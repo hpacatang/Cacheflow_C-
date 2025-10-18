@@ -15,6 +15,7 @@ namespace ASI.Basecode.Data
         }
 
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Article> Articles { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>(entity =>
@@ -52,9 +53,18 @@ namespace ASI.Basecode.Data
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<Article>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Title).HasMaxLength(150).IsRequired();
+                entity.Property(e => e.Category).HasMaxLength(50).IsRequired();
+                entity.Property(e => e.Body).IsRequired();
+            });
+
             OnModelCreatingPartial(modelBuilder);
         }
 
+        
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
