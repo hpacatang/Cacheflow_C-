@@ -6,5 +6,7 @@ namespace ASI.Basecode.Data.Interfaces
     public interface IUserRepository
     {
         IQueryable<User> GetUsers();
+        User GetUserByEmail(string email);
+        void AddUser(User user);
     }
 }
