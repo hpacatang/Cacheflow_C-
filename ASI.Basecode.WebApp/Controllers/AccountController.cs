@@ -63,14 +63,52 @@ namespace ASI.Basecode.WebApp.Controllers
         public async Task<IActionResult> Login([FromBody] LoginViewModel model)
 
         {
-            this._session.SetString("HasSession", "Exist");
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            User user = null;
+            var user = new User();
+            var result = _userService.AuthenticateUser(model.UserId, model.Password, ref user);
+            if (result == ASI.Basecode.Resources.Constants.Enums.LoginResult.Success)
+            {
+                // create claims from authenticated user and sign in
+                var identity = _signInManager.CreateClaimsIdentity(user);
+                if (identity != null)
+                {
+                    var principal = _signInManager.CreateClaimsPrincipal(identity);
+                    await _signInManager.SignInAsync(principal);
 
-            //await this._signInManager.SignInAsync(user);
-            this._session.SetString("UserName", model.UserId);
+                    this._session.SetString("HasSession", "Exist");
+                    this._session.SetString("UserName", model.UserId);
 
-            return Ok(user);
+                    return Ok(new { success = true, user = user });
+                }
+            }
+
+            return Unauthorized(new { success = false, message = "Invalid credentials" });
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Register([FromBody] ASI.Basecode.Services.ServiceModels.UserViewModel model)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var user = new User
+            {
+                UserId = model.UserId,
+                Name = model.Name,
+                Password = model.Password,
+                Email = null,
+                Role = "User",
+                Status = "Active"
+            };
+
+            var result = _userService.RegisterUser(user);
+            if (result == ASI.Basecode.Resources.Constants.Enums.LoginResult.Success)
+            {
+                return Ok(new { success = true });
+            }
+
+            return BadRequest(new { success = false, message = "Registration failed" });
         }
 
         /// <summary>
