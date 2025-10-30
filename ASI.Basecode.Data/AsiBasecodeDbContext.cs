@@ -16,6 +16,8 @@ namespace ASI.Basecode.Data
 
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Article> Articles { get; set; }
+        public virtual DbSet<Ticket> Tickets { get; set; }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>(entity =>
@@ -59,6 +61,19 @@ namespace ASI.Basecode.Data
                 entity.Property(e => e.Title).HasMaxLength(150).IsRequired();
                 entity.Property(e => e.Category).HasMaxLength(50).IsRequired();
                 entity.Property(e => e.Body).IsRequired();
+            });
+
+            modelBuilder.Entity<Ticket>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Summary).HasMaxLength(150).IsRequired();
+                entity.Property(e => e.Name).HasMaxLength(50).IsRequired();
+                entity.Property(e => e.Assignee).HasMaxLength(50).IsRequired();
+                entity.Property(e => e.Status).HasMaxLength(50).IsRequired();
+                entity.Property(e => e.Type).HasMaxLength(50).IsRequired();
+                entity.Property(e => e.Description).IsRequired();
+                entity.Property(e => e.Priority).HasMaxLength(50).IsRequired();
+                entity.Property(e => e.Category).HasMaxLength(50).IsRequired();
             });
 
             OnModelCreatingPartial(modelBuilder);
