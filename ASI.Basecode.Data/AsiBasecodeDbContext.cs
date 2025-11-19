@@ -74,9 +74,6 @@ namespace ASI.Basecode.Data
                 entity.Property(e => e.Description).IsRequired();
                 entity.Property(e => e.Priority).HasMaxLength(50).IsRequired();
                 entity.Property(e => e.Category).HasMaxLength(50).IsRequired();
-                
-                entity.Property(e => e.DueDate).HasColumnType("datetime");
-                entity.Property(e => e.ResolvedAt).HasColumnType("datetime");
             });
 
             OnModelCreatingPartial(modelBuilder);
