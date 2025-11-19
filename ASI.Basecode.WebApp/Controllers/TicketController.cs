@@ -10,16 +10,12 @@ namespace ASI.Basecode.WebApp.Controllers
 {
     [Route("api/[controller]")]  
     [ApiController]
-    [AllowAnonymous]
     public class TicketController : ControllerBase
     {
         private readonly AsiBasecodeDBContext _context;
         public TicketController(AsiBasecodeDBContext ctx) => _context = ctx;
 
-        /*
-         * GET https://localhost:56201/api/ticket
-         * Returns all tickets as JSON array
-         */
+        // GET https://localhost:56201/api/ticket
         [HttpGet]
         public IActionResult GetAll() 
         {
@@ -33,11 +29,7 @@ namespace ASI.Basecode.WebApp.Controllers
             }
         }
 
-        /*
-         * GET https://localhost:56201/api/ticket/{id}
-         * Returns single ticket by id
-         * Example: GET https://localhost:56201/api/ticket/5
-         */
+        // GET https://localhost:56201/api/ticket/{id}
         [HttpGet("{id:int}")]
         public IActionResult GetOne(int id)
         {
@@ -45,33 +37,13 @@ namespace ASI.Basecode.WebApp.Controllers
             return t is null ? NotFound() : Ok(t);
         }
 
-        /*
-         * POST https://localhost:56201/api/ticket
-         * Creates a new ticket
-         * 
-         * JSON Body (required fields):
-         * {
-         *   "summary": "Issue title",
-         *   "name": "creator_username",
-         *   "assignee": "assignee_username",
-         *   "type": "hardware",
-         *   "description": "Detailed description",
-         *   "dueDate": "2025-10-31T17:00:00Z",
-         *   "priority": "high",
-         *   "category": "Hardware"
-         * }
-         * 
-         * Optional fields:
-         * - id (int) : for testing only, server assigns if omitted
-         * - status (string) : defaults to "open"
-         * - resolvedAt (datetime or null)
-         */
+        // POST https://localhost:56201/api/ticket
+        // Fields: summary, name, assignee, type, description, dueDate, priority, category, status (optional), resolvedAt (optional)
         [HttpPost]
         public IActionResult Create([FromBody] Ticket ticket)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            // If client supplied an id for testing, accept it if not already used
             if (ticket.Id != 0)
             {
                 if (_context.Tickets.Any(x => x.Id == ticket.Id))
@@ -86,6 +58,11 @@ namespace ASI.Basecode.WebApp.Controllers
 
             ticket.Status ??= "open";
             ticket.ResolvedAt ??= null;
+            
+            if (ticket.DueDate == null || ticket.DueDate == default || ticket.DueDate == DateTime.MinValue)
+            {
+                ticket.DueDate = new DateTime(9999, 12, 31, 23, 59, 59, DateTimeKind.Utc);
+            }
 
             _context.Tickets.Add(ticket);
             _context.SaveChanges();
@@ -93,21 +70,8 @@ namespace ASI.Basecode.WebApp.Controllers
             return CreatedAtAction(nameof(GetOne), new { id = ticket.Id }, ticket);
         }
 
-        /*
-         * PUT https://localhost:56201/api/ticket/{id}
-         * Updates ticket with any fields present in JSON body (partial or full update)
-         * 
-         * Example - update single field:
-         * PUT https://localhost:56201/api/ticket/5
-         * { "status": "resolved" }
-         * 
-         * Example - update multiple fields:
-         * {
-         *   "status": "inProgress",
-         *   "assignee": "tech_support",
-         *   "priority": "high"
-         * }
-         */
+        // PUT https://localhost:56201/api/ticket/{id}
+        // Fields: summary, name, assignee, status, type, description, priority, category, dueDate, resolvedAt
         [HttpPut("{id:int}")]
         public IActionResult Update(int id, [FromBody] JsonElement body)
         {
@@ -156,7 +120,6 @@ namespace ASI.Basecode.WebApp.Controllers
                 return false;
             }
 
-            // Update fields if present in body
             if (TryGetString(body, new[] { "summary", "Summary" }, out var summary)) t.Summary = summary ?? t.Summary;
             if (TryGetString(body, new[] { "name", "Name" }, out var name)) t.Name = name ?? t.Name;
             if (TryGetString(body, new[] { "assignee", "Assignee" }, out var assignee)) t.Assignee = assignee ?? t.Assignee;
@@ -173,45 +136,7 @@ namespace ASI.Basecode.WebApp.Controllers
             return NoContent();
         }
 
-        /*
-         * PATCH https://localhost:56201/api/ticket/{id}
-         * Partial update - only updates the fields you send
-         * 
-         * Example:
-         * PATCH https://localhost:56201/api/ticket/5
-         * { "priority": "low" }
-         */
-        [HttpPatch("{id:int}")]
-        public IActionResult Patch(int id, [FromBody] JsonElement body)
-        {
-            var t = _context.Tickets.Find(id);
-            if (t is null) return NotFound();
-
-            if (body.TryGetProperty("summary", out var s) && s.ValueKind != JsonValueKind.Null) t.Summary = s.GetString();
-            if (body.TryGetProperty("description", out var d) && d.ValueKind != JsonValueKind.Null) t.Description = d.GetString();
-            if (body.TryGetProperty("priority", out var p) && p.ValueKind != JsonValueKind.Null) t.Priority = p.GetString();
-            if (body.TryGetProperty("category", out var c) && c.ValueKind != JsonValueKind.Null) t.Category = c.GetString();
-
-            if (body.TryGetProperty("dueDate", out var dd))
-            {
-                if (dd.ValueKind == JsonValueKind.String && DateTime.TryParse(dd.GetString(), out var dt)) t.DueDate = dt;
-                else if (dd.ValueKind == JsonValueKind.Null) t.DueDate = default;
-            }
-            if (body.TryGetProperty("resolvedAt", out var ra))
-            {
-                if (ra.ValueKind == JsonValueKind.String && DateTime.TryParse(ra.GetString(), out var rt)) t.ResolvedAt = rt;
-                else if (ra.ValueKind == JsonValueKind.Null) t.ResolvedAt = null;
-            }
-
-            _context.SaveChanges();
-            return NoContent();
-        }
-
-        /*
-         * DELETE https://localhost:56201/api/ticket/{id}
-         * Deletes a ticket
-         * Example: DELETE https://localhost:56201/api/ticket/5
-         */
+        // DELETE https://localhost:56201/api/ticket/{id}
         [HttpDelete("{id:int}")]
         public IActionResult Delete(int id)
         {
