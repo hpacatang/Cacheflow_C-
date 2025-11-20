@@ -29,7 +29,7 @@ namespace ASI.Basecode.WebApp.Controllers
             {
                 users = _userService
                         .GetAllUsers()
-                        .Select(u => new { id = u.Id, userId = u.UserId, name = u.Name, email = u.Email, role = u.Role, status = u.Status })
+                        .Select(u => new { id = u.Id, name = u.Name, email = u.Email, role = u.Role, status = u.Status })
                         .Cast<object>()
                         .ToList();
             }
@@ -48,8 +48,7 @@ namespace ASI.Basecode.WebApp.Controllers
 
             var user = new User
             {
-                // Use username as UserId so it maps to existing services
-                UserId = model.name,
+                // Map to DB columns: Name and Email. Id is identity in DB so do not set.
                 Name = model.name,
                 Email = model.email,
                 Password = model.password,

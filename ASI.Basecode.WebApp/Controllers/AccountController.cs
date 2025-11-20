@@ -94,7 +94,6 @@ namespace ASI.Basecode.WebApp.Controllers
 
             var user = new User
             {
-                UserId = model.UserId,
                 Name = model.Name,
                 Password = model.Password,
                 Email = null,

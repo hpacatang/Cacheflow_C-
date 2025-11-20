@@ -6,7 +6,8 @@ namespace ASI.Basecode.Services.Interfaces
 {
     public interface IUserService
     {
-        LoginResult AuthenticateUser(string userid, string password, ref User user);
+        // identifier can be email or name
+        LoginResult AuthenticateUser(string identifier, string password, ref User user);
         LoginResult RegisterUser(User user);
         IEnumerable<User> GetAllUsers();
     }

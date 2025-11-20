@@ -20,12 +20,15 @@ namespace ASI.Basecode.Services.Services
             _repository = repository;
         }
 
-        public LoginResult AuthenticateUser(string userId, string password, ref User user)
+        // identifier can be email or name
+        public LoginResult AuthenticateUser(string identifier, string password, ref User user)
         {
-            user = new User();
+            user = null;
             var passwordKey = PasswordManager.EncryptPassword(password);
-            user = _repository.GetUsers().Where(x => x.UserId == userId &&
-                                                     x.Password == passwordKey).FirstOrDefault();
+            user = _repository.GetUsers()
+                              .Where(x => (x.Email == identifier || x.Name == identifier) &&
+                                           x.Password == passwordKey)
+                              .FirstOrDefault();
 
             return user != null ? LoginResult.Success : LoginResult.Failed;
         }
@@ -33,19 +36,19 @@ namespace ASI.Basecode.Services.Services
         public LoginResult RegisterUser(User user)
         {
             // Ensure required fields
-            if (user == null || string.IsNullOrEmpty(user.UserId) || string.IsNullOrEmpty(user.Password))
+            if (user == null || string.IsNullOrEmpty(user.Name) || string.IsNullOrEmpty(user.Password))
                 return LoginResult.Failed;
 
-            // Check duplicate
-            var existing = _repository.GetUsers().Any(x => x.UserId == user.UserId || x.Email == user.Email);
+            // Check duplicate by name or email
+            var existing = _repository.GetUsers().Any(x => x.Name == user.Name || (user.Email != null && x.Email == user.Email));
             if (existing) return LoginResult.Failed;
 
             // Encrypt password before storing
             user.Password = PasswordManager.EncryptPassword(user.Password);
             user.CreatedTime = System.DateTime.UtcNow;
             user.UpdatedTime = System.DateTime.UtcNow;
-            user.CreatedBy = user.UserId;
-            user.UpdatedBy = user.UserId;
+            user.CreatedBy = user.Name;
+            user.UpdatedBy = user.Name;
 
             _repository.AddUser(user);
             return LoginResult.Success;

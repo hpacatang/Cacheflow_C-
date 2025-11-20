@@ -22,11 +22,14 @@ namespace ASI.Basecode.Data
         {
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(e => e.UserId, "UQ__Users__1788CC4D5F4A160F")
-                    .IsUnique();
+                // Users table: Id (identity), Email, Name, Password, Role, Status, CreatedTime, CreatedBy, UpdatedTime, UpdatedBy
+
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.CreatedBy)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -37,22 +40,18 @@ namespace ASI.Basecode.Data
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                // Password column in SQL is varchar(max); do not restrict length here
                 entity.Property(e => e.Password)
                     .IsRequired()
-                    .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.UpdatedBy)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.UpdatedTime).HasColumnType("datetime");
 
-                entity.Property(e => e.UserId)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                // Optionally add unique constraints on Email or Name if DB has them
             });
 
             modelBuilder.Entity<Article>(entity =>
@@ -66,9 +65,10 @@ namespace ASI.Basecode.Data
             modelBuilder.Entity<Ticket>(entity =>
             {
                 entity.HasKey(e => e.Id);
-                entity.Property(e => e.Summary).HasMaxLength(150).IsRequired();
-                entity.Property(e => e.Name).HasMaxLength(50).IsRequired();
-                entity.Property(e => e.Assignee).HasMaxLength(50);
+                entity.Property(e => e.Summary).HasMaxLength(50).IsRequired();
+
+                // UserID and AgentID are integers matching SQL schema
+
                 entity.Property(e => e.Status).HasMaxLength(50).IsRequired();
                 entity.Property(e => e.Type).HasMaxLength(50).IsRequired();
                 entity.Property(e => e.Description).IsRequired();
