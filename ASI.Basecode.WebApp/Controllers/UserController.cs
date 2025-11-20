@@ -1,6 +1,7 @@
 ﻿using ASI.Basecode.Data.Models;
 using ASI.Basecode.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -19,6 +20,7 @@ namespace ASI.Basecode.WebApp.Controllers
 
         // GET /users
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult GetUsers()
         {
             // Return minimal user info without password
@@ -37,6 +39,7 @@ namespace ASI.Basecode.WebApp.Controllers
 
         // POST /users
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult Create([FromBody] FrontendUserDto model)
         {
             if (model == null) return BadRequest();

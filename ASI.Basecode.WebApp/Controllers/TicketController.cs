@@ -52,19 +52,14 @@ namespace ASI.Basecode.WebApp.Controllers
          * JSON Body (required fields):
          * {
          *   "summary": "Issue title",
-         *   "name": "creator_username",
-         *   "assignee": "assignee_username",
+         *   "userID": 1,
+         *   "agentID": 2,
          *   "type": "hardware",
          *   "description": "Detailed description",
          *   "dueDate": "2025-10-31T17:00:00Z",
          *   "priority": "high",
          *   "category": "Hardware"
          * }
-         * 
-         * Optional fields:
-         * - id (int) : for testing only, server assigns if omitted
-         * - status (string) : defaults to "open"
-         * - resolvedAt (datetime or null)
          */
         [HttpPost]
         public IActionResult Create([FromBody] Ticket ticket)
@@ -87,6 +82,10 @@ namespace ASI.Basecode.WebApp.Controllers
             ticket.Status ??= "open";
             ticket.ResolvedAt ??= null;
 
+            // Set timestamps
+            ticket.CreatedTime = DateTime.UtcNow;
+            ticket.UpdatedTime = DateTime.UtcNow;
+
             _context.Tickets.Add(ticket);
             _context.SaveChanges();
 
@@ -96,17 +95,6 @@ namespace ASI.Basecode.WebApp.Controllers
         /*
          * PUT https://localhost:56201/api/ticket/{id}
          * Updates ticket with any fields present in JSON body (partial or full update)
-         * 
-         * Example - update single field:
-         * PUT https://localhost:56201/api/ticket/5
-         * { "status": "resolved" }
-         * 
-         * Example - update multiple fields:
-         * {
-         *   "status": "inProgress",
-         *   "assignee": "tech_support",
-         *   "priority": "high"
-         * }
          */
         [HttpPut("{id:int}")]
         public IActionResult Update(int id, [FromBody] JsonElement body)
@@ -156,10 +144,41 @@ namespace ASI.Basecode.WebApp.Controllers
                 return false;
             }
 
+            static bool TryGetInt(JsonElement el, string[] keys, out int? value)
+            {
+                foreach (var k in keys)
+                {
+                    if (el.TryGetProperty(k, out var prop))
+                    {
+                        if (prop.ValueKind == JsonValueKind.Number && prop.TryGetInt32(out var i))
+                        {
+                            value = i;
+                            return true;
+                        }
+                        if (prop.ValueKind == JsonValueKind.String)
+                        {
+                            var s = prop.GetString();
+                            if (!string.IsNullOrEmpty(s) && int.TryParse(s, out var pi))
+                            {
+                                value = pi;
+                                return true;
+                            }
+                        }
+                        if (prop.ValueKind == JsonValueKind.Null)
+                        {
+                            value = null;
+                            return true;
+                        }
+                    }
+                }
+                value = null;
+                return false;
+            }
+
             // Update fields if present in body
             if (TryGetString(body, new[] { "summary", "Summary" }, out var summary)) t.Summary = summary ?? t.Summary;
-            if (TryGetString(body, new[] { "name", "Name" }, out var name)) t.Name = name ?? t.Name;
-            if (TryGetString(body, new[] { "assignee", "Assignee" }, out var assignee)) t.Assignee = assignee ?? t.Assignee;
+            if (TryGetInt(body, new[] { "userId", "UserID", "userID", "UserId" }, out var userId)) t.UserID = userId ?? t.UserID;
+            if (TryGetInt(body, new[] { "agentId", "AgentID", "agentID", "AgentId" }, out var agentId)) t.AgentID = agentId ?? t.AgentID;
             if (TryGetString(body, new[] { "status", "Status" }, out var status)) t.Status = status ?? t.Status;
             if (TryGetString(body, new[] { "type", "Type" }, out var type)) t.Type = type ?? t.Type;
             if (TryGetString(body, new[] { "description", "Description" }, out var desc)) t.Description = desc ?? t.Description;
@@ -169,6 +188,9 @@ namespace ASI.Basecode.WebApp.Controllers
             if (TryGetDate(body, new[] { "dueDate", "DueDate" }, out var due)) t.DueDate = due ?? t.DueDate;
             if (TryGetDate(body, new[] { "resolvedAt", "ResolvedAt" }, out var resolved)) t.ResolvedAt = resolved;
 
+            // update timestamp
+            t.UpdatedTime = DateTime.UtcNow;
+
             _context.SaveChanges();
             return NoContent();
         }
@@ -176,10 +198,6 @@ namespace ASI.Basecode.WebApp.Controllers
         /*
          * PATCH https://localhost:56201/api/ticket/{id}
          * Partial update - only updates the fields you send
-         * 
-         * Example:
-         * PATCH https://localhost:56201/api/ticket/5
-         * { "priority": "low" }
          */
         [HttpPatch("{id:int}")]
         public IActionResult Patch(int id, [FromBody] JsonElement body)
@@ -192,6 +210,18 @@ namespace ASI.Basecode.WebApp.Controllers
             if (body.TryGetProperty("priority", out var p) && p.ValueKind != JsonValueKind.Null) t.Priority = p.GetString();
             if (body.TryGetProperty("category", out var c) && c.ValueKind != JsonValueKind.Null) t.Category = c.GetString();
 
+            if (body.TryGetProperty("userId", out var uid))
+            {
+                if (uid.ValueKind == JsonValueKind.Number && uid.TryGetInt32(out var i)) t.UserID = i;
+                else if (uid.ValueKind == JsonValueKind.String && int.TryParse(uid.GetString(), out var pi)) t.UserID = pi;
+            }
+
+            if (body.TryGetProperty("agentId", out var aid))
+            {
+                if (aid.ValueKind == JsonValueKind.Number && aid.TryGetInt32(out var i)) t.AgentID = i;
+                else if (aid.ValueKind == JsonValueKind.String && int.TryParse(aid.GetString(), out var pi)) t.AgentID = pi;
+            }
+
             if (body.TryGetProperty("dueDate", out var dd))
             {
                 if (dd.ValueKind == JsonValueKind.String && DateTime.TryParse(dd.GetString(), out var dt)) t.DueDate = dt;
@@ -203,6 +233,9 @@ namespace ASI.Basecode.WebApp.Controllers
                 else if (ra.ValueKind == JsonValueKind.Null) t.ResolvedAt = null;
             }
 
+            // update timestamp
+            t.UpdatedTime = DateTime.UtcNow;
+
             _context.SaveChanges();
             return NoContent();
         }
@@ -210,7 +243,6 @@ namespace ASI.Basecode.WebApp.Controllers
         /*
          * DELETE https://localhost:56201/api/ticket/{id}
          * Deletes a ticket
-         * Example: DELETE https://localhost:56201/api/ticket/5
          */
         [HttpDelete("{id:int}")]
         public IActionResult Delete(int id)

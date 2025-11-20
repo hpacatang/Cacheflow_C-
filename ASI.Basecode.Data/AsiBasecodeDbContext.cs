@@ -66,14 +66,28 @@ namespace ASI.Basecode.Data
             modelBuilder.Entity<Ticket>(entity =>
             {
                 entity.HasKey(e => e.Id);
-                entity.Property(e => e.Summary).HasMaxLength(150).IsRequired();
-                entity.Property(e => e.Name).HasMaxLength(50).IsRequired();
-                entity.Property(e => e.Assignee).HasMaxLength(50).IsRequired();
+                entity.Property(e => e.Summary).HasMaxLength(50).IsRequired();
+
+                // UserID and AgentID are integers (no string length configuration)
+
                 entity.Property(e => e.Status).HasMaxLength(50).IsRequired();
                 entity.Property(e => e.Type).HasMaxLength(50).IsRequired();
                 entity.Property(e => e.Description).IsRequired();
                 entity.Property(e => e.Priority).HasMaxLength(50).IsRequired();
                 entity.Property(e => e.Category).HasMaxLength(50).IsRequired();
+
+                entity.Property(e => e.ResolvedAt).HasColumnType("datetime");
+                entity.Property(e => e.DueDate).HasColumnType("datetime");
+                entity.Property(e => e.CreatedTime).HasColumnType("datetime");
+                entity.Property(e => e.UpdatedTime).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedBy)
+                      .HasMaxLength(50)
+                      .IsUnicode(false);
+
+                entity.Property(e => e.UpdatedBy)
+                      .HasMaxLength(50)
+                      .IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);
