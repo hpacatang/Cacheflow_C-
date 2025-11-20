@@ -17,7 +17,8 @@ namespace ASI.Basecode.Data
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Article> Articles { get; set; }
         public virtual DbSet<Ticket> Tickets { get; set; }
-        
+        public virtual DbSet<Feedback> Feedbacks { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>(entity =>
