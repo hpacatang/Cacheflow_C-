@@ -10,16 +10,12 @@ namespace ASI.Basecode.WebApp.Controllers
 {
     [Route("api/[controller]")]  
     [ApiController]
-    [AllowAnonymous]
     public class TicketController : ControllerBase
     {
         private readonly AsiBasecodeDBContext _context;
         public TicketController(AsiBasecodeDBContext ctx) => _context = ctx;
 
-        /*
-         * GET https://localhost:56201/api/ticket
-         * Returns all tickets as JSON array
-         */
+        // GET https://localhost:56201/api/ticket
         [HttpGet]
         public IActionResult GetAll() 
         {
@@ -33,11 +29,7 @@ namespace ASI.Basecode.WebApp.Controllers
             }
         }
 
-        /*
-         * GET https://localhost:56201/api/ticket/{id}
-         * Returns single ticket by id
-         * Example: GET https://localhost:56201/api/ticket/5
-         */
+        // GET https://localhost:56201/api/ticket/{id}
         [HttpGet("{id:int}")]
         public IActionResult GetOne(int id)
         {
@@ -66,7 +58,6 @@ namespace ASI.Basecode.WebApp.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            // If client supplied an id for testing, accept it if not already used
             if (ticket.Id != 0)
             {
                 if (_context.Tickets.Any(x => x.Id == ticket.Id))
@@ -81,6 +72,11 @@ namespace ASI.Basecode.WebApp.Controllers
 
             ticket.Status ??= "open";
             ticket.ResolvedAt ??= null;
+            
+            if (ticket.DueDate == null || ticket.DueDate == default || ticket.DueDate == DateTime.MinValue)
+            {
+                ticket.DueDate = new DateTime(9999, 12, 31, 23, 59, 59, DateTimeKind.Utc);
+            }
 
             // Set timestamps
             ticket.CreatedTime = DateTime.UtcNow;

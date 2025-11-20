@@ -66,10 +66,9 @@ namespace ASI.Basecode.Data
             modelBuilder.Entity<Ticket>(entity =>
             {
                 entity.HasKey(e => e.Id);
-                entity.Property(e => e.Summary).HasMaxLength(50).IsRequired();
-
-                // UserID and AgentID are integers (no string length configuration)
-
+                entity.Property(e => e.Summary).HasMaxLength(150).IsRequired();
+                entity.Property(e => e.Name).HasMaxLength(50).IsRequired();
+                entity.Property(e => e.Assignee).HasMaxLength(50);
                 entity.Property(e => e.Status).HasMaxLength(50).IsRequired();
                 entity.Property(e => e.Type).HasMaxLength(50).IsRequired();
                 entity.Property(e => e.Description).IsRequired();
