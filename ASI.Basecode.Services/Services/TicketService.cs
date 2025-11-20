@@ -35,8 +35,13 @@ namespace ASI.Basecode.Services.Services
                 Type = ticket.Type,
                 Description = ticket.Description,
                 DueDate = ticket.DueDate,
+                ResolvedAt = ticket.ResolvedAt,
                 Priority = ticket.Priority,
                 Category = ticket.Category,
+                CreatedTime = ticket.CreatedTime,
+                CreatedBy = ticket.CreatedBy,
+                UpdatedTime = ticket.UpdatedTime,
+                UpdatedBy = ticket.UpdatedBy,
                 Feedback = ticket.Feedback.Select(f => new FeedbackViewModel
                 {
                     Id = f.Id,
@@ -47,7 +52,7 @@ namespace ASI.Basecode.Services.Services
                     Comment = f.Comment,
                     FeedbackDate = f.FeedbackDate,
                     Status = f.Status
-                }).ToList()
+                 }).ToList()
             };
         }
     }

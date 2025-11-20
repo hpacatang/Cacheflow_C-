@@ -16,6 +16,10 @@ namespace ASI.Basecode.Data.Models
         public DateTime DueDate { get; set; }
         public string Priority { get; set; } = null!;
         public string Category { get; set; } = null!;
+        public DateTime? CreatedTime { get; set; }
+        public string? CreatedBy { get; set; }
+        public DateTime? UpdatedTime { get; set; }
+        public string? UpdatedBy { get; set; }
 
         public ICollection<Feedback> Feedback { get; set; } = new List<Feedback>();
     }

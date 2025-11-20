@@ -18,6 +18,11 @@ namespace ASI.Basecode.Services.ServiceModels
         public DateTime DueDate { get; set; }
         public string Priority { get; set; }
         public string Category { get; set; }
+        public DateTime? ResolvedAt { get; set; }
+        public DateTime? CreatedTime { get; set; }
+        public string? CreatedBy { get; set; }
+        public DateTime? UpdatedTime { get; set; }
+        public string? UpdatedBy { get; set; }
 
         public List<FeedbackViewModel> Feedback { get; set; }
     }
