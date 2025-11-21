@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using ASI.Basecode.Data;
 using ASI.Basecode.Data.Models;
 using System.Text.Json;
+using ASI.Basecode.Services.Interfaces;
 
 namespace ASI.Basecode.WebApp.Controllers
 {
@@ -17,6 +18,7 @@ namespace ASI.Basecode.WebApp.Controllers
     public class TicketController : ControllerBase
     {
         private readonly AsiBasecodeDBContext _context;
+        private readonly ITicketService _ticketService;
         private readonly IWebHostEnvironment _environment;
         private const string ATTACHMENT_FOLDER = "TicketAttachments";
 
@@ -261,6 +263,51 @@ namespace ASI.Basecode.WebApp.Controllers
             }
             value = null;
             return false;
+        }
+
+        
+        // GET api/ticket/{id}/with-feedback
+         
+        [HttpGet("{id:int}/with-feedback")]
+        public IActionResult GetTicketWithFeedback(int id)
+        {
+            var ticketWithFeedback = _ticketService.GetTicketWithFeedback(id);
+            if (ticketWithFeedback == null)
+                return NotFound();
+            return Ok(ticketWithFeedback);
+        }
+
+        
+         // GET /api/ticket/with-feedback/all
+         
+        [HttpGet("with-feedback/all")]
+        public IActionResult GetAllTicketsWithFeedback()
+        {
+            try
+            {
+                var ticketsWithFeedback = _context.Tickets
+                    .Where(t => t.Feedback.Any())
+                    .Select(t => new
+                    {
+                        t.Id,
+                        t.Summary,
+                        t.UserID,
+                        t.AgentID,
+                        t.Status,
+                        t.ResolvedAt,
+                        t.DueDate,
+                        t.Priority,
+                        t.Category,
+                        FeedbackCount = t.Feedback.Count()
+                    })
+                    .ToList();
+
+                return Ok(ticketsWithFeedback);
+            }
+            catch (System.Exception ex)
+            {
+                return StatusCode(500, $"Database error: {ex.Message}");
+            }
         }
     }
 }

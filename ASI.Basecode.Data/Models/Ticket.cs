@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace ASI.Basecode.Data.Models
 {
@@ -12,7 +13,7 @@ namespace ASI.Basecode.Data.Models
         public DateTime? ResolvedAt { get; set; }
         public string Type { get; set; } = null!;
         public string Description { get; set; } = null!;
-        public DateTime? DueDate { get; set; }
+        public DateTime DueDate { get; set; }
         public string Priority { get; set; } = null!;
         public string Category { get; set; } = null!;
         public DateTime? CreatedTime { get; set; }
@@ -21,5 +22,6 @@ namespace ASI.Basecode.Data.Models
         public string? UpdatedBy { get; set; }
         public string? AttachmentPath { get; set; }
 
+        public ICollection<Feedback> Feedback { get; set; } = new List<Feedback>();
     }
 }
