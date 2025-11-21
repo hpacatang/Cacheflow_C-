@@ -32,6 +32,7 @@ namespace ASI.Basecode.WebApp
             // Services
             this._services.TryAddSingleton<TokenValidationParametersFactory>();
             this._services.AddScoped<IUserService, UserService>();
+            this._services.AddScoped<ITicketService, TicketService>();
 
 
             // Repositories
