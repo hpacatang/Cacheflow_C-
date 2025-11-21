@@ -1,0 +1,119 @@
+2025-10-19 23:22:42.180 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-10-19 23:31:54.437 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-10-19 23:31:54.846 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-10-19 23:31:54.914 +08:00 [DBG] Compiling query expression: 
+'DbSet<User>()'
+2025-10-19 23:31:55.111 +08:00 [DBG] Generated query execution expression: 
+'queryContext => SingleQueryingEnumerable.Create<User>(
+    relationalQueryContext: (RelationalQueryContext)queryContext, 
+    relationalCommandResolver: parameters => [LIFTABLE Constant: RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) ANSI, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string), 3], [Property: User.Name (string) Required MaxLength(50) ANSI, 4], [Property: User.Password (string) Required MaxLength(50) ANSI, 5], [Property: User.Role (string), 6], [Property: User.Status (string), 7], [Property: User.UpdatedBy (string) Required MaxLength(50) ANSI, 8], [Property: User.UpdatedTime (DateTime) Required, 9], [Property: User.UserId (string) Required Index MaxLength(50) ANSI, 10] }
+        SELECT u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.Role, u.Status, u.UpdatedBy, u.UpdatedTime, u.UserId
+        FROM Users AS u) | Resolver: c => new RelationalCommandCache(
+        c.Dependencies.MemoryCache, 
+        c.RelationalDependencies.QuerySqlGeneratorFactory, 
+        c.RelationalDependencies.RelationalParameterBasedSqlProcessorFactory, 
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) ANSI, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string), 3], [Property: User.Name (string) Required MaxLength(50) ANSI, 4], [Property: User.Password (string) Required MaxLength(50) ANSI, 5], [Property: User.Role (string), 6], [Property: User.Status (string), 7], [Property: User.UpdatedBy (string) Required MaxLength(50) ANSI, 8], [Property: User.UpdatedTime (DateTime) Required, 9], [Property: User.UserId (string) Required Index MaxLength(50) ANSI, 10] }
+        SELECT u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.Role, u.Status, u.UpdatedBy, u.UpdatedTime, u.UserId
+        FROM Users AS u, 
+        False, 
+        new HashSet<string>(
+            new string[]{ }, 
+            StringComparer.Ordinal
+        )
+    )].GetRelationalCommandTemplate(parameters), 
+    readerColumns: null, 
+    shaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+    {
+        User entity;
+        entity = 
+        {
+            MaterializationContext materializationContext1;
+            IEntityType entityType1;
+            User instance1;
+            InternalEntityEntry entry1;
+            bool hasNullKey1;
+            materializationContext1 = new MaterializationContext(
+                [LIFTABLE Constant: ValueBuffer | Resolver: _ => (object)ValueBuffer.Empty], 
+                queryContext.Context
+            );
+            instance1 = default(User);
+            entry1 = queryContext.TryGetEntry(
+                key: [LIFTABLE Constant: Key: User.Id PK | Resolver: c => c.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.User").FindPrimaryKey()], 
+                keyValues: new object[]{ (object)dataReader.GetInt32(0) }, 
+                throwOnNullKey: True, 
+                hasNullKey: hasNullKey1);
+            !(hasNullKey1) ? entry1 != default(InternalEntityEntry) ? 
+            {
+                entityType1 = entry1.EntityType;
+                return instance1 = (User)entry1.Entity;
+            } : 
+            {
+                ISnapshot shadowSnapshot1;
+                shadowSnapshot1 = [LIFTABLE Constant: Snapshot | Resolver: _ => Snapshot.Empty];
+                entityType1 = [LIFTABLE Constant: EntityType: User | Resolver: namelessParameter{0} => namelessParameter{0}.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.User")];
+                instance1 = switch (entityType1)
+                {
+                    case [LIFTABLE Constant: EntityType: User | Resolver: namelessParameter{1} => namelessParameter{1}.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.User")]: 
+                        {
+                            return 
+                            {
+                                User instance;
+                                instance = new User();
+                                instance.<Id>k__BackingField = dataReader.GetInt32(0);
+                                instance.<CreatedBy>k__BackingField = dataReader.GetString(1);
+                                instance.<CreatedTime>k__BackingField = dataReader.GetDateTime(2);
+                                instance.<Email>k__BackingField = dataReader.IsDBNull(3) ? default(string) : dataReader.GetString(3);
+                                instance.<Name>k__BackingField = dataReader.GetString(4);
+                                instance.<Password>k__BackingField = dataReader.GetString(5);
+                                instance.<Role>k__BackingField = dataReader.IsDBNull(6) ? default(string) : dataReader.GetString(6);
+                                instance.<Status>k__BackingField = dataReader.IsDBNull(7) ? default(string) : dataReader.GetString(7);
+                                instance.<UpdatedBy>k__BackingField = dataReader.GetString(8);
+                                instance.<UpdatedTime>k__BackingField = dataReader.GetDateTime(9);
+                                instance.<UserId>k__BackingField = dataReader.GetString(10);
+                                (instance is IInjectableService) ? ((IInjectableService)instance).Injected(
+                                    context: materializationContext1.Context, 
+                                    entity: instance, 
+                                    queryTrackingBehavior: TrackAll, 
+                                    structuralType: [LIFTABLE Constant: EntityType: User | Resolver: namelessParameter{2} => namelessParameter{2}.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.User")]) : default(void);
+                                return instance;
+                            }}
+                    default: 
+                        default(User)
+                }
+                ;
+                entry1 = entityType1 == default(IEntityType) ? default(InternalEntityEntry) : queryContext.StartTracking(
+                    entityType: entityType1, 
+                    entity: instance1, 
+                    snapshot: shadowSnapshot1);
+                return instance1;
+            } : default(void);
+            return instance1;
+        };
+        return entity;
+    }, 
+    contextType: ASI.Basecode.Data.AsiBasecodeDBContext, 
+    standAloneStateManager: False, 
+    detailedErrorsEnabled: False, 
+    threadSafetyChecksEnabled: True)'
+2025-10-19 23:31:55.131 +08:00 [DBG] Creating DbConnection.
+2025-10-19 23:31:55.150 +08:00 [DBG] Created DbConnection. (14ms).
+2025-10-19 23:31:55.154 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-10-19 23:31:56.651 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-10-19 23:31:56.727 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-10-19 23:31:56.734 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (5ms).
+2025-10-19 23:31:56.747 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-10-19 23:31:56.753 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-10-19 23:31:56.756 +08:00 [DBG] Disposed connection to database '' on server '' (5ms).
+2025-10-19 23:31:59.127 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-10-19 23:31:59.129 +08:00 [DBG] Creating DbConnection.
+2025-10-19 23:31:59.131 +08:00 [DBG] Created DbConnection. (1ms).
+2025-10-19 23:31:59.132 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-10-19 23:31:59.134 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-10-19 23:31:59.152 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-10-19 23:31:59.154 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (1ms).
+2025-10-19 23:31:59.164 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-10-19 23:31:59.166 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-10-19 23:31:59.167 +08:00 [DBG] Disposed connection to database '' on server '' (1ms).

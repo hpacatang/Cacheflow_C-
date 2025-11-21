@@ -19,5 +19,7 @@ namespace ASI.Basecode.Data.Models
         public string? CreatedBy { get; set; }
         public DateTime? UpdatedTime { get; set; }
         public string? UpdatedBy { get; set; }
+        public string? AttachmentPath { get; set; }
+
     }
 }

@@ -1,0 +1,477 @@
+2025-11-17 20:42:29.066 +08:00 [DBG] Middleware loaded
+2025-11-17 20:42:29.131 +08:00 [DBG] Middleware loaded. Script /_framework/aspnetcore-browser-refresh.js (16523 B).
+2025-11-17 20:42:29.137 +08:00 [DBG] Middleware loaded. Script /_framework/blazor-hotreload.js (799 B).
+2025-11-17 20:42:29.294 +08:00 [DBG] Middleware loaded: DOTNET_MODIFIABLE_ASSEMBLIES=debug, __ASPNETCORE_BROWSER_TOOLS=true
+2025-11-17 20:42:29.599 +08:00 [INF] Now listening on: https://localhost:56201
+2025-11-17 20:42:29.824 +08:00 [INF] Now listening on: http://localhost:56202
+2025-11-17 20:42:29.981 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-17 20:42:29.981 +08:00 [INF] Hosting environment: Development
+2025-11-17 20:42:29.982 +08:00 [INF] Content root path: C:\Users\Ju\Documents\Alliance\Cacheflow_C-\ASI.Basecode.WebApp
+2025-11-17 21:02:57.256 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-11-17 21:02:58.506 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-17 21:02:58.635 +08:00 [DBG] Compiling query expression: 
+'DbSet<Ticket>()'
+2025-11-17 21:02:59.235 +08:00 [DBG] Generated query execution expression: 
+'queryContext => SingleQueryingEnumerable.Create<Ticket>(
+    relationalQueryContext: (RelationalQueryContext)queryContext, 
+    relationalCommandResolver: parameters => [LIFTABLE Constant: RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Ticket.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Ticket.Assignee (string) Required MaxLength(50), 1], [Property: Ticket.Category (string) Required MaxLength(50), 2], [Property: Ticket.Description (string) Required, 3], [Property: Ticket.DueDate (DateTime) Required, 4], [Property: Ticket.Name (string) Required MaxLength(50), 5], [Property: Ticket.Priority (string) Required MaxLength(50), 6], [Property: Ticket.ResolvedAt (DateTime?), 7], [Property: Ticket.Status (string) Required MaxLength(50), 8], [Property: Ticket.Summary (string) Required MaxLength(150), 9], [Property: Ticket.Type (string) Required MaxLength(50), 10] }
+        SELECT t.Id, t.Assignee, t.Category, t.Description, t.DueDate, t.Name, t.Priority, t.ResolvedAt, t.Status, t.Summary, t.Type
+        FROM Tickets AS t) | Resolver: c => new RelationalCommandCache(
+        c.Dependencies.MemoryCache, 
+        c.RelationalDependencies.QuerySqlGeneratorFactory, 
+        c.RelationalDependencies.RelationalParameterBasedSqlProcessorFactory, 
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Ticket.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Ticket.Assignee (string) Required MaxLength(50), 1], [Property: Ticket.Category (string) Required MaxLength(50), 2], [Property: Ticket.Description (string) Required, 3], [Property: Ticket.DueDate (DateTime) Required, 4], [Property: Ticket.Name (string) Required MaxLength(50), 5], [Property: Ticket.Priority (string) Required MaxLength(50), 6], [Property: Ticket.ResolvedAt (DateTime?), 7], [Property: Ticket.Status (string) Required MaxLength(50), 8], [Property: Ticket.Summary (string) Required MaxLength(150), 9], [Property: Ticket.Type (string) Required MaxLength(50), 10] }
+        SELECT t.Id, t.Assignee, t.Category, t.Description, t.DueDate, t.Name, t.Priority, t.ResolvedAt, t.Status, t.Summary, t.Type
+        FROM Tickets AS t, 
+        False, 
+        new HashSet<string>(
+            new string[]{ }, 
+            StringComparer.Ordinal
+        )
+    )].GetRelationalCommandTemplate(parameters), 
+    readerColumns: null, 
+    shaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+    {
+        Ticket entity;
+        entity = 
+        {
+            MaterializationContext materializationContext1;
+            IEntityType entityType1;
+            Ticket instance1;
+            InternalEntityEntry entry1;
+            bool hasNullKey1;
+            materializationContext1 = new MaterializationContext(
+                [LIFTABLE Constant: ValueBuffer | Resolver: _ => (object)ValueBuffer.Empty], 
+                queryContext.Context
+            );
+            instance1 = default(Ticket);
+            entry1 = queryContext.TryGetEntry(
+                key: [LIFTABLE Constant: Key: Ticket.Id PK | Resolver: c => c.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.Ticket").FindPrimaryKey()], 
+                keyValues: new object[]{ (object)dataReader.GetInt32(0) }, 
+                throwOnNullKey: True, 
+                hasNullKey: hasNullKey1);
+            !(hasNullKey1) ? entry1 != default(InternalEntityEntry) ? 
+            {
+                entityType1 = entry1.EntityType;
+                return instance1 = (Ticket)entry1.Entity;
+            } : 
+            {
+                ISnapshot shadowSnapshot1;
+                shadowSnapshot1 = [LIFTABLE Constant: Snapshot | Resolver: _ => Snapshot.Empty];
+                entityType1 = [LIFTABLE Constant: EntityType: Ticket | Resolver: namelessParameter{0} => namelessParameter{0}.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.Ticket")];
+                instance1 = switch (entityType1)
+                {
+                    case [LIFTABLE Constant: EntityType: Ticket | Resolver: namelessParameter{1} => namelessParameter{1}.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.Ticket")]: 
+                        {
+                            return 
+                            {
+                                Ticket instance;
+                                instance = new Ticket();
+                                instance.<Id>k__BackingField = dataReader.GetInt32(0);
+                                instance.<Assignee>k__BackingField = dataReader.GetString(1);
+                                instance.<Category>k__BackingField = dataReader.GetString(2);
+                                instance.<Description>k__BackingField = dataReader.GetString(3);
+                                instance.<DueDate>k__BackingField = dataReader.GetDateTime(4);
+                                instance.<Name>k__BackingField = dataReader.GetString(5);
+                                instance.<Priority>k__BackingField = dataReader.GetString(6);
+                                instance.<ResolvedAt>k__BackingField = dataReader.IsDBNull(7) ? default(DateTime?) : (DateTime?)dataReader.GetDateTime(7);
+                                instance.<Status>k__BackingField = dataReader.GetString(8);
+                                instance.<Summary>k__BackingField = dataReader.GetString(9);
+                                instance.<Type>k__BackingField = dataReader.GetString(10);
+                                (instance is IInjectableService) ? ((IInjectableService)instance).Injected(
+                                    context: materializationContext1.Context, 
+                                    entity: instance, 
+                                    queryTrackingBehavior: TrackAll, 
+                                    structuralType: [LIFTABLE Constant: EntityType: Ticket | Resolver: namelessParameter{2} => namelessParameter{2}.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.Ticket")]) : default(void);
+                                return instance;
+                            }}
+                    default: 
+                        default(Ticket)
+                }
+                ;
+                entry1 = entityType1 == default(IEntityType) ? default(InternalEntityEntry) : queryContext.StartTracking(
+                    entityType: entityType1, 
+                    entity: instance1, 
+                    snapshot: shadowSnapshot1);
+                return instance1;
+            } : default(void);
+            return instance1;
+        };
+        return entity;
+    }, 
+    contextType: ASI.Basecode.Data.AsiBasecodeDBContext, 
+    standAloneStateManager: False, 
+    detailedErrorsEnabled: False, 
+    threadSafetyChecksEnabled: True)'
+2025-11-17 21:02:59.307 +08:00 [DBG] Creating DbConnection.
+2025-11-17 21:02:59.370 +08:00 [DBG] Created DbConnection. (47ms).
+2025-11-17 21:02:59.377 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-17 21:03:00.999 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-17 21:03:01.219 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-17 21:03:01.298 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-17 21:03:01.326 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-17 21:03:01.342 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (11ms).
+2025-11-17 21:03:01.383 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-17 21:03:01.393 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-17 21:03:01.397 +08:00 [DBG] Disposed connection to database '' on server '' (4ms).
+2025-11-17 21:17:39.985 +08:00 [DBG] Middleware loaded
+2025-11-17 21:17:40.076 +08:00 [DBG] Middleware loaded. Script /_framework/aspnetcore-browser-refresh.js (16523 B).
+2025-11-17 21:17:40.082 +08:00 [DBG] Middleware loaded. Script /_framework/blazor-hotreload.js (799 B).
+2025-11-17 21:17:40.184 +08:00 [DBG] Middleware loaded: DOTNET_MODIFIABLE_ASSEMBLIES=debug, __ASPNETCORE_BROWSER_TOOLS=true
+2025-11-17 21:17:40.414 +08:00 [INF] Now listening on: https://localhost:56201
+2025-11-17 21:17:40.415 +08:00 [INF] Now listening on: http://localhost:56202
+2025-11-17 21:17:40.539 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-17 21:17:40.539 +08:00 [INF] Hosting environment: Development
+2025-11-17 21:17:40.539 +08:00 [INF] Content root path: C:\Users\Ju\Documents\Alliance\Cacheflow_C-\ASI.Basecode.WebApp
+2025-11-17 21:17:48.083 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-11-17 21:17:49.224 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-17 21:17:49.340 +08:00 [DBG] Compiling query expression: 
+'DbSet<User>()'
+2025-11-17 21:17:49.974 +08:00 [DBG] Generated query execution expression: 
+'queryContext => SingleQueryingEnumerable.Create<User>(
+    relationalQueryContext: (RelationalQueryContext)queryContext, 
+    relationalCommandResolver: parameters => [LIFTABLE Constant: RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) ANSI, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string), 3], [Property: User.Name (string) Required MaxLength(50) ANSI, 4], [Property: User.Password (string) Required MaxLength(50) ANSI, 5], [Property: User.Role (string), 6], [Property: User.Status (string), 7], [Property: User.UpdatedBy (string) Required MaxLength(50) ANSI, 8], [Property: User.UpdatedTime (DateTime) Required, 9], [Property: User.UserId (string) Required Index MaxLength(50) ANSI, 10] }
+        SELECT u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.Role, u.Status, u.UpdatedBy, u.UpdatedTime, u.UserId
+        FROM Users AS u) | Resolver: c => new RelationalCommandCache(
+        c.Dependencies.MemoryCache, 
+        c.RelationalDependencies.QuerySqlGeneratorFactory, 
+        c.RelationalDependencies.RelationalParameterBasedSqlProcessorFactory, 
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) ANSI, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string), 3], [Property: User.Name (string) Required MaxLength(50) ANSI, 4], [Property: User.Password (string) Required MaxLength(50) ANSI, 5], [Property: User.Role (string), 6], [Property: User.Status (string), 7], [Property: User.UpdatedBy (string) Required MaxLength(50) ANSI, 8], [Property: User.UpdatedTime (DateTime) Required, 9], [Property: User.UserId (string) Required Index MaxLength(50) ANSI, 10] }
+        SELECT u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.Role, u.Status, u.UpdatedBy, u.UpdatedTime, u.UserId
+        FROM Users AS u, 
+        False, 
+        new HashSet<string>(
+            new string[]{ }, 
+            StringComparer.Ordinal
+        )
+    )].GetRelationalCommandTemplate(parameters), 
+    readerColumns: null, 
+    shaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+    {
+        User entity;
+        entity = 
+        {
+            MaterializationContext materializationContext1;
+            IEntityType entityType1;
+            User instance1;
+            InternalEntityEntry entry1;
+            bool hasNullKey1;
+            materializationContext1 = new MaterializationContext(
+                [LIFTABLE Constant: ValueBuffer | Resolver: _ => (object)ValueBuffer.Empty], 
+                queryContext.Context
+            );
+            instance1 = default(User);
+            entry1 = queryContext.TryGetEntry(
+                key: [LIFTABLE Constant: Key: User.Id PK | Resolver: c => c.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.User").FindPrimaryKey()], 
+                keyValues: new object[]{ (object)dataReader.GetInt32(0) }, 
+                throwOnNullKey: True, 
+                hasNullKey: hasNullKey1);
+            !(hasNullKey1) ? entry1 != default(InternalEntityEntry) ? 
+            {
+                entityType1 = entry1.EntityType;
+                return instance1 = (User)entry1.Entity;
+            } : 
+            {
+                ISnapshot shadowSnapshot1;
+                shadowSnapshot1 = [LIFTABLE Constant: Snapshot | Resolver: _ => Snapshot.Empty];
+                entityType1 = [LIFTABLE Constant: EntityType: User | Resolver: namelessParameter{0} => namelessParameter{0}.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.User")];
+                instance1 = switch (entityType1)
+                {
+                    case [LIFTABLE Constant: EntityType: User | Resolver: namelessParameter{1} => namelessParameter{1}.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.User")]: 
+                        {
+                            return 
+                            {
+                                User instance;
+                                instance = new User();
+                                instance.<Id>k__BackingField = dataReader.GetInt32(0);
+                                instance.<CreatedBy>k__BackingField = dataReader.GetString(1);
+                                instance.<CreatedTime>k__BackingField = dataReader.GetDateTime(2);
+                                instance.<Email>k__BackingField = dataReader.IsDBNull(3) ? default(string) : dataReader.GetString(3);
+                                instance.<Name>k__BackingField = dataReader.GetString(4);
+                                instance.<Password>k__BackingField = dataReader.GetString(5);
+                                instance.<Role>k__BackingField = dataReader.IsDBNull(6) ? default(string) : dataReader.GetString(6);
+                                instance.<Status>k__BackingField = dataReader.IsDBNull(7) ? default(string) : dataReader.GetString(7);
+                                instance.<UpdatedBy>k__BackingField = dataReader.GetString(8);
+                                instance.<UpdatedTime>k__BackingField = dataReader.GetDateTime(9);
+                                instance.<UserId>k__BackingField = dataReader.GetString(10);
+                                (instance is IInjectableService) ? ((IInjectableService)instance).Injected(
+                                    context: materializationContext1.Context, 
+                                    entity: instance, 
+                                    queryTrackingBehavior: TrackAll, 
+                                    structuralType: [LIFTABLE Constant: EntityType: User | Resolver: namelessParameter{2} => namelessParameter{2}.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.User")]) : default(void);
+                                return instance;
+                            }}
+                    default: 
+                        default(User)
+                }
+                ;
+                entry1 = entityType1 == default(IEntityType) ? default(InternalEntityEntry) : queryContext.StartTracking(
+                    entityType: entityType1, 
+                    entity: instance1, 
+                    snapshot: shadowSnapshot1);
+                return instance1;
+            } : default(void);
+            return instance1;
+        };
+        return entity;
+    }, 
+    contextType: ASI.Basecode.Data.AsiBasecodeDBContext, 
+    standAloneStateManager: False, 
+    detailedErrorsEnabled: False, 
+    threadSafetyChecksEnabled: True)'
+2025-11-17 21:17:50.042 +08:00 [DBG] Creating DbConnection.
+2025-11-17 21:17:50.101 +08:00 [DBG] Created DbConnection. (41ms).
+2025-11-17 21:17:50.111 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-17 21:17:51.706 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-17 21:17:51.909 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-17 21:17:51.928 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (14ms).
+2025-11-17 21:17:51.951 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-17 21:17:51.957 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-17 21:17:51.960 +08:00 [DBG] Disposed connection to database '' on server '' (2ms).
+2025-11-17 21:19:31.942 +08:00 [DBG] Middleware loaded
+2025-11-17 21:19:32.049 +08:00 [DBG] Middleware loaded. Script /_framework/aspnetcore-browser-refresh.js (16523 B).
+2025-11-17 21:19:32.054 +08:00 [DBG] Middleware loaded. Script /_framework/blazor-hotreload.js (799 B).
+2025-11-17 21:19:32.280 +08:00 [DBG] Middleware loaded: DOTNET_MODIFIABLE_ASSEMBLIES=debug, __ASPNETCORE_BROWSER_TOOLS=true
+2025-11-17 21:19:32.614 +08:00 [INF] Now listening on: https://localhost:56201
+2025-11-17 21:19:32.620 +08:00 [INF] Now listening on: http://localhost:56202
+2025-11-17 21:19:32.787 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-17 21:19:32.799 +08:00 [INF] Hosting environment: Development
+2025-11-17 21:19:32.824 +08:00 [INF] Content root path: C:\Users\Ju\Documents\Alliance\Cacheflow_C-\ASI.Basecode.WebApp
+2025-11-17 21:23:19.085 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-11-17 21:23:19.086 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-11-17 21:23:20.491 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-17 21:23:20.492 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-17 21:23:20.617 +08:00 [DBG] Compiling query expression: 
+'DbSet<Ticket>()'
+2025-11-17 21:23:21.292 +08:00 [DBG] Generated query execution expression: 
+'queryContext => SingleQueryingEnumerable.Create<Ticket>(
+    relationalQueryContext: (RelationalQueryContext)queryContext, 
+    relationalCommandResolver: parameters => [LIFTABLE Constant: RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Ticket.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Ticket.Assignee (string) Required MaxLength(50), 1], [Property: Ticket.Category (string) Required MaxLength(50), 2], [Property: Ticket.Description (string) Required, 3], [Property: Ticket.DueDate (DateTime) Required, 4], [Property: Ticket.Name (string) Required MaxLength(50), 5], [Property: Ticket.Priority (string) Required MaxLength(50), 6], [Property: Ticket.ResolvedAt (DateTime?), 7], [Property: Ticket.Status (string) Required MaxLength(50), 8], [Property: Ticket.Summary (string) Required MaxLength(150), 9], [Property: Ticket.Type (string) Required MaxLength(50), 10] }
+        SELECT t.Id, t.Assignee, t.Category, t.Description, t.DueDate, t.Name, t.Priority, t.ResolvedAt, t.Status, t.Summary, t.Type
+        FROM Tickets AS t) | Resolver: c => new RelationalCommandCache(
+        c.Dependencies.MemoryCache, 
+        c.RelationalDependencies.QuerySqlGeneratorFactory, 
+        c.RelationalDependencies.RelationalParameterBasedSqlProcessorFactory, 
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Ticket.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Ticket.Assignee (string) Required MaxLength(50), 1], [Property: Ticket.Category (string) Required MaxLength(50), 2], [Property: Ticket.Description (string) Required, 3], [Property: Ticket.DueDate (DateTime) Required, 4], [Property: Ticket.Name (string) Required MaxLength(50), 5], [Property: Ticket.Priority (string) Required MaxLength(50), 6], [Property: Ticket.ResolvedAt (DateTime?), 7], [Property: Ticket.Status (string) Required MaxLength(50), 8], [Property: Ticket.Summary (string) Required MaxLength(150), 9], [Property: Ticket.Type (string) Required MaxLength(50), 10] }
+        SELECT t.Id, t.Assignee, t.Category, t.Description, t.DueDate, t.Name, t.Priority, t.ResolvedAt, t.Status, t.Summary, t.Type
+        FROM Tickets AS t, 
+        False, 
+        new HashSet<string>(
+            new string[]{ }, 
+            StringComparer.Ordinal
+        )
+    )].GetRelationalCommandTemplate(parameters), 
+    readerColumns: null, 
+    shaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+    {
+        Ticket entity;
+        entity = 
+        {
+            MaterializationContext materializationContext1;
+            IEntityType entityType1;
+            Ticket instance1;
+            InternalEntityEntry entry1;
+            bool hasNullKey1;
+            materializationContext1 = new MaterializationContext(
+                [LIFTABLE Constant: ValueBuffer | Resolver: _ => (object)ValueBuffer.Empty], 
+                queryContext.Context
+            );
+            instance1 = default(Ticket);
+            entry1 = queryContext.TryGetEntry(
+                key: [LIFTABLE Constant: Key: Ticket.Id PK | Resolver: c => c.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.Ticket").FindPrimaryKey()], 
+                keyValues: new object[]{ (object)dataReader.GetInt32(0) }, 
+                throwOnNullKey: True, 
+                hasNullKey: hasNullKey1);
+            !(hasNullKey1) ? entry1 != default(InternalEntityEntry) ? 
+            {
+                entityType1 = entry1.EntityType;
+                return instance1 = (Ticket)entry1.Entity;
+            } : 
+            {
+                ISnapshot shadowSnapshot1;
+                shadowSnapshot1 = [LIFTABLE Constant: Snapshot | Resolver: _ => Snapshot.Empty];
+                entityType1 = [LIFTABLE Constant: EntityType: Ticket | Resolver: namelessParameter{0} => namelessParameter{0}.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.Ticket")];
+                instance1 = switch (entityType1)
+                {
+                    case [LIFTABLE Constant: EntityType: Ticket | Resolver: namelessParameter{1} => namelessParameter{1}.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.Ticket")]: 
+                        {
+                            return 
+                            {
+                                Ticket instance;
+                                instance = new Ticket();
+                                instance.<Id>k__BackingField = dataReader.GetInt32(0);
+                                instance.<Assignee>k__BackingField = dataReader.GetString(1);
+                                instance.<Category>k__BackingField = dataReader.GetString(2);
+                                instance.<Description>k__BackingField = dataReader.GetString(3);
+                                instance.<DueDate>k__BackingField = dataReader.GetDateTime(4);
+                                instance.<Name>k__BackingField = dataReader.GetString(5);
+                                instance.<Priority>k__BackingField = dataReader.GetString(6);
+                                instance.<ResolvedAt>k__BackingField = dataReader.IsDBNull(7) ? default(DateTime?) : (DateTime?)dataReader.GetDateTime(7);
+                                instance.<Status>k__BackingField = dataReader.GetString(8);
+                                instance.<Summary>k__BackingField = dataReader.GetString(9);
+                                instance.<Type>k__BackingField = dataReader.GetString(10);
+                                (instance is IInjectableService) ? ((IInjectableService)instance).Injected(
+                                    context: materializationContext1.Context, 
+                                    entity: instance, 
+                                    queryTrackingBehavior: TrackAll, 
+                                    structuralType: [LIFTABLE Constant: EntityType: Ticket | Resolver: namelessParameter{2} => namelessParameter{2}.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.Ticket")]) : default(void);
+                                return instance;
+                            }}
+                    default: 
+                        default(Ticket)
+                }
+                ;
+                entry1 = entityType1 == default(IEntityType) ? default(InternalEntityEntry) : queryContext.StartTracking(
+                    entityType: entityType1, 
+                    entity: instance1, 
+                    snapshot: shadowSnapshot1);
+                return instance1;
+            } : default(void);
+            return instance1;
+        };
+        return entity;
+    }, 
+    contextType: ASI.Basecode.Data.AsiBasecodeDBContext, 
+    standAloneStateManager: False, 
+    detailedErrorsEnabled: False, 
+    threadSafetyChecksEnabled: True)'
+2025-11-17 21:23:21.374 +08:00 [DBG] Creating DbConnection.
+2025-11-17 21:23:21.385 +08:00 [DBG] Creating DbConnection.
+2025-11-17 21:23:21.449 +08:00 [DBG] Created DbConnection. (65ms).
+2025-11-17 21:23:21.449 +08:00 [DBG] Created DbConnection. (63ms).
+2025-11-17 21:23:21.492 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-17 21:23:21.492 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-17 21:23:23.150 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-17 21:23:23.332 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-17 21:23:23.440 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-17 21:23:23.478 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-17 21:23:23.503 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (18ms).
+2025-11-17 21:23:23.574 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-17 21:23:23.588 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-17 21:23:23.595 +08:00 [DBG] Disposed connection to database '' on server '' (7ms).
+2025-11-17 21:23:23.990 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-17 21:23:24.014 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-17 21:23:24.017 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-17 21:23:24.034 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-17 21:23:24.040 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (11ms).
+2025-11-17 21:23:24.046 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-17 21:23:24.050 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-17 21:23:24.077 +08:00 [DBG] Disposed connection to database '' on server '' (4ms).
+2025-11-17 21:26:07.806 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-17 21:26:07.862 +08:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .Any(x => x.UserId == __user_UserId_0 || x.Email == __user_Email_1)'
+2025-11-17 21:26:08.043 +08:00 [DBG] Generated query execution expression: 
+'queryContext => SingleQueryingEnumerable.Create<bool>(
+    relationalQueryContext: (RelationalQueryContext)queryContext, 
+    relationalCommandResolver: parameters => [LIFTABLE Constant: RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT EXISTS (
+            SELECT 1
+            FROM Users AS u
+            WHERE (u.UserId == @__user_UserId_0) || (u.Email == @__user_Email_1))) | Resolver: c => new RelationalCommandCache(
+        c.Dependencies.MemoryCache, 
+        c.RelationalDependencies.QuerySqlGeneratorFactory, 
+        c.RelationalDependencies.RelationalParameterBasedSqlProcessorFactory, 
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT EXISTS (
+            SELECT 1
+            FROM Users AS u
+            WHERE (u.UserId == @__user_UserId_0) || (u.Email == @__user_Email_1)), 
+        False, 
+        new HashSet<string>(
+            new string[]{ }, 
+            StringComparer.Ordinal
+        )
+    )].GetRelationalCommandTemplate(parameters), 
+    readerColumns: null, 
+    shaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+    {
+        bool? value1;
+        value1 = dataReader.IsDBNull(0) ? default(bool?) : (bool?)dataReader.GetBoolean(0);
+        return (bool)value1;
+    }, 
+    contextType: ASI.Basecode.Data.AsiBasecodeDBContext, 
+    standAloneStateManager: False, 
+    detailedErrorsEnabled: False, 
+    threadSafetyChecksEnabled: True)
+    .Single()'
+2025-11-17 21:26:08.112 +08:00 [DBG] Creating DbConnection.
+2025-11-17 21:26:08.116 +08:00 [DBG] Created DbConnection. (3ms).
+2025-11-17 21:26:08.118 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-17 21:26:08.123 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-17 21:26:08.218 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-17 21:26:08.256 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (2ms).
+2025-11-17 21:26:08.340 +08:00 [DBG] 'AsiBasecodeDBContext' generated a temporary value for the property 'User.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-17 21:26:08.406 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-17 21:26:08.415 +08:00 [DBG] SaveChanges starting for 'AsiBasecodeDBContext'.
+2025-11-17 21:26:08.427 +08:00 [DBG] DetectChanges starting for 'AsiBasecodeDBContext'.
+2025-11-17 21:26:08.471 +08:00 [DBG] DetectChanges completed for 'AsiBasecodeDBContext'.
+2025-11-17 21:26:08.629 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-17 21:26:08.634 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-17 21:26:08.728 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-17 21:26:08.730 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (2ms).
+2025-11-17 21:26:08.823 +08:00 [ERR] An exception occurred in the database while saving changes for context type 'ASI.Basecode.Data.AsiBasecodeDBContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Conversion failed when converting date and/or time from character string.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+ClientConnectionId:5ab51149-28c5-4ade-8540-479d73fca47e
+Error Number:241,State:1,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.Consume(RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__112_0(DbContext _, ValueTuple`2 t)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Conversion failed when converting date and/or time from character string.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+ClientConnectionId:5ab51149-28c5-4ade-8540-479d73fca47e
+Error Number:241,State:1,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.Consume(RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__112_0(DbContext _, ValueTuple`2 t)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)

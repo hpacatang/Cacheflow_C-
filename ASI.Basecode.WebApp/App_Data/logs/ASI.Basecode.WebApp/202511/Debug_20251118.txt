@@ -1,0 +1,1081 @@
+2025-11-18 00:01:48.246 +08:00 [DBG] Middleware loaded
+2025-11-18 00:01:48.337 +08:00 [DBG] Middleware loaded. Script /_framework/aspnetcore-browser-refresh.js (16523 B).
+2025-11-18 00:01:48.341 +08:00 [DBG] Middleware loaded. Script /_framework/blazor-hotreload.js (799 B).
+2025-11-18 00:01:48.535 +08:00 [DBG] Middleware loaded: DOTNET_MODIFIABLE_ASSEMBLIES=debug, __ASPNETCORE_BROWSER_TOOLS=true
+2025-11-18 00:02:46.976 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-11-18 00:02:48.501 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:02:48.689 +08:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .Any(x => x.UserId == __user_UserId_0 || x.Email == __user_Email_1)'
+2025-11-18 00:02:49.256 +08:00 [DBG] Generated query execution expression: 
+'queryContext => SingleQueryingEnumerable.Create<bool>(
+    relationalQueryContext: (RelationalQueryContext)queryContext, 
+    relationalCommandResolver: parameters => [LIFTABLE Constant: RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT EXISTS (
+            SELECT 1
+            FROM Users AS u
+            WHERE (u.UserId == @__user_UserId_0) || (u.Email == @__user_Email_1))) | Resolver: c => new RelationalCommandCache(
+        c.Dependencies.MemoryCache, 
+        c.RelationalDependencies.QuerySqlGeneratorFactory, 
+        c.RelationalDependencies.RelationalParameterBasedSqlProcessorFactory, 
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT EXISTS (
+            SELECT 1
+            FROM Users AS u
+            WHERE (u.UserId == @__user_UserId_0) || (u.Email == @__user_Email_1)), 
+        False, 
+        new HashSet<string>(
+            new string[]{ }, 
+            StringComparer.Ordinal
+        )
+    )].GetRelationalCommandTemplate(parameters), 
+    readerColumns: null, 
+    shaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+    {
+        bool? value1;
+        value1 = dataReader.IsDBNull(0) ? default(bool?) : (bool?)dataReader.GetBoolean(0);
+        return (bool)value1;
+    }, 
+    contextType: ASI.Basecode.Data.AsiBasecodeDBContext, 
+    standAloneStateManager: False, 
+    detailedErrorsEnabled: False, 
+    threadSafetyChecksEnabled: True)
+    .Single()'
+2025-11-18 00:02:49.393 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:02:49.464 +08:00 [DBG] Created DbConnection. (52ms).
+2025-11-18 00:02:49.477 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:02:51.144 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:02:51.367 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:02:51.382 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (11ms).
+2025-11-18 00:02:51.467 +08:00 [DBG] 'AsiBasecodeDBContext' generated a temporary value for the property 'User.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:02:51.600 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:02:51.606 +08:00 [DBG] SaveChanges starting for 'AsiBasecodeDBContext'.
+2025-11-18 00:02:51.612 +08:00 [DBG] DetectChanges starting for 'AsiBasecodeDBContext'.
+2025-11-18 00:02:51.649 +08:00 [DBG] DetectChanges completed for 'AsiBasecodeDBContext'.
+2025-11-18 00:02:51.798 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:02:51.802 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:02:51.876 +08:00 [DBG] The foreign key property 'User.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-11-18 00:02:51.894 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:02:51.897 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (2ms).
+2025-11-18 00:02:51.939 +08:00 [DBG] An entity of type 'User' tracked by 'AsiBasecodeDBContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:02:51.951 +08:00 [DBG] SaveChanges completed for 'AsiBasecodeDBContext' with 1 entities written to the database.
+2025-11-18 00:02:52.033 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:02:52.040 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:02:52.044 +08:00 [DBG] Disposed connection to database '' on server '' (4ms).
+2025-11-18 00:02:56.863 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:02:56.873 +08:00 [DBG] Compiling query expression: 
+'DbSet<User>()'
+2025-11-18 00:02:56.989 +08:00 [DBG] Generated query execution expression: 
+'queryContext => SingleQueryingEnumerable.Create<User>(
+    relationalQueryContext: (RelationalQueryContext)queryContext, 
+    relationalCommandResolver: parameters => [LIFTABLE Constant: RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) ANSI, 1], [Property: User.CreatedTime (DateTime?), 2], [Property: User.Email (string), 3], [Property: User.Name (string) Required MaxLength(50) ANSI, 4], [Property: User.Password (string) Required MaxLength(50) ANSI, 5], [Property: User.Role (string), 6], [Property: User.Status (string), 7], [Property: User.UpdatedBy (string) Required MaxLength(50) ANSI, 8], [Property: User.UpdatedTime (DateTime?), 9], [Property: User.UserId (string) Required Index MaxLength(50) ANSI, 10] }
+        SELECT u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.Role, u.Status, u.UpdatedBy, u.UpdatedTime, u.UserId
+        FROM Users AS u) | Resolver: c => new RelationalCommandCache(
+        c.Dependencies.MemoryCache, 
+        c.RelationalDependencies.QuerySqlGeneratorFactory, 
+        c.RelationalDependencies.RelationalParameterBasedSqlProcessorFactory, 
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) ANSI, 1], [Property: User.CreatedTime (DateTime?), 2], [Property: User.Email (string), 3], [Property: User.Name (string) Required MaxLength(50) ANSI, 4], [Property: User.Password (string) Required MaxLength(50) ANSI, 5], [Property: User.Role (string), 6], [Property: User.Status (string), 7], [Property: User.UpdatedBy (string) Required MaxLength(50) ANSI, 8], [Property: User.UpdatedTime (DateTime?), 9], [Property: User.UserId (string) Required Index MaxLength(50) ANSI, 10] }
+        SELECT u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.Role, u.Status, u.UpdatedBy, u.UpdatedTime, u.UserId
+        FROM Users AS u, 
+        False, 
+        new HashSet<string>(
+            new string[]{ }, 
+            StringComparer.Ordinal
+        )
+    )].GetRelationalCommandTemplate(parameters), 
+    readerColumns: null, 
+    shaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+    {
+        User entity;
+        entity = 
+        {
+            MaterializationContext materializationContext1;
+            IEntityType entityType1;
+            User instance1;
+            InternalEntityEntry entry1;
+            bool hasNullKey1;
+            materializationContext1 = new MaterializationContext(
+                [LIFTABLE Constant: ValueBuffer | Resolver: _ => (object)ValueBuffer.Empty], 
+                queryContext.Context
+            );
+            instance1 = default(User);
+            entry1 = queryContext.TryGetEntry(
+                key: [LIFTABLE Constant: Key: User.Id PK | Resolver: c => c.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.User").FindPrimaryKey()], 
+                keyValues: new object[]{ (object)dataReader.GetInt32(0) }, 
+                throwOnNullKey: True, 
+                hasNullKey: hasNullKey1);
+            !(hasNullKey1) ? entry1 != default(InternalEntityEntry) ? 
+            {
+                entityType1 = entry1.EntityType;
+                return instance1 = (User)entry1.Entity;
+            } : 
+            {
+                ISnapshot shadowSnapshot1;
+                shadowSnapshot1 = [LIFTABLE Constant: Snapshot | Resolver: _ => Snapshot.Empty];
+                entityType1 = [LIFTABLE Constant: EntityType: User | Resolver: namelessParameter{0} => namelessParameter{0}.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.User")];
+                instance1 = switch (entityType1)
+                {
+                    case [LIFTABLE Constant: EntityType: User | Resolver: namelessParameter{1} => namelessParameter{1}.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.User")]: 
+                        {
+                            return 
+                            {
+                                User instance;
+                                instance = new User();
+                                instance.<Id>k__BackingField = dataReader.GetInt32(0);
+                                instance.<CreatedBy>k__BackingField = dataReader.GetString(1);
+                                instance.<CreatedTime>k__BackingField = dataReader.IsDBNull(2) ? default(DateTime?) : (DateTime?)dataReader.GetDateTime(2);
+                                instance.<Email>k__BackingField = dataReader.IsDBNull(3) ? default(string) : dataReader.GetString(3);
+                                instance.<Name>k__BackingField = dataReader.GetString(4);
+                                instance.<Password>k__BackingField = dataReader.GetString(5);
+                                instance.<Role>k__BackingField = dataReader.IsDBNull(6) ? default(string) : dataReader.GetString(6);
+                                instance.<Status>k__BackingField = dataReader.IsDBNull(7) ? default(string) : dataReader.GetString(7);
+                                instance.<UpdatedBy>k__BackingField = dataReader.GetString(8);
+                                instance.<UpdatedTime>k__BackingField = dataReader.IsDBNull(9) ? default(DateTime?) : (DateTime?)dataReader.GetDateTime(9);
+                                instance.<UserId>k__BackingField = dataReader.GetString(10);
+                                (instance is IInjectableService) ? ((IInjectableService)instance).Injected(
+                                    context: materializationContext1.Context, 
+                                    entity: instance, 
+                                    queryTrackingBehavior: TrackAll, 
+                                    structuralType: [LIFTABLE Constant: EntityType: User | Resolver: namelessParameter{2} => namelessParameter{2}.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.User")]) : default(void);
+                                return instance;
+                            }}
+                    default: 
+                        default(User)
+                }
+                ;
+                entry1 = entityType1 == default(IEntityType) ? default(InternalEntityEntry) : queryContext.StartTracking(
+                    entityType: entityType1, 
+                    entity: instance1, 
+                    snapshot: shadowSnapshot1);
+                return instance1;
+            } : default(void);
+            return instance1;
+        };
+        return entity;
+    }, 
+    contextType: ASI.Basecode.Data.AsiBasecodeDBContext, 
+    standAloneStateManager: False, 
+    detailedErrorsEnabled: False, 
+    threadSafetyChecksEnabled: True)'
+2025-11-18 00:02:57.001 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:02:57.004 +08:00 [DBG] Created DbConnection. (3ms).
+2025-11-18 00:02:57.008 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:02:57.011 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:02:57.053 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:02:57.059 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:02:57.061 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (2ms).
+2025-11-18 00:02:57.070 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:02:57.072 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:02:57.073 +08:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-11-18 00:04:06.692 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:04:06.694 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:04:06.699 +08:00 [DBG] Compiling query expression: 
+'DbSet<Ticket>()'
+2025-11-18 00:04:06.716 +08:00 [DBG] Generated query execution expression: 
+'queryContext => SingleQueryingEnumerable.Create<Ticket>(
+    relationalQueryContext: (RelationalQueryContext)queryContext, 
+    relationalCommandResolver: parameters => [LIFTABLE Constant: RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Ticket.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Ticket.Assignee (string) Required MaxLength(50), 1], [Property: Ticket.Category (string) Required MaxLength(50), 2], [Property: Ticket.Description (string) Required, 3], [Property: Ticket.DueDate (DateTime) Required, 4], [Property: Ticket.Name (string) Required MaxLength(50), 5], [Property: Ticket.Priority (string) Required MaxLength(50), 6], [Property: Ticket.ResolvedAt (DateTime?), 7], [Property: Ticket.Status (string) Required MaxLength(50), 8], [Property: Ticket.Summary (string) Required MaxLength(150), 9], [Property: Ticket.Type (string) Required MaxLength(50), 10] }
+        SELECT t.Id, t.Assignee, t.Category, t.Description, t.DueDate, t.Name, t.Priority, t.ResolvedAt, t.Status, t.Summary, t.Type
+        FROM Tickets AS t) | Resolver: c => new RelationalCommandCache(
+        c.Dependencies.MemoryCache, 
+        c.RelationalDependencies.QuerySqlGeneratorFactory, 
+        c.RelationalDependencies.RelationalParameterBasedSqlProcessorFactory, 
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Ticket.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Ticket.Assignee (string) Required MaxLength(50), 1], [Property: Ticket.Category (string) Required MaxLength(50), 2], [Property: Ticket.Description (string) Required, 3], [Property: Ticket.DueDate (DateTime) Required, 4], [Property: Ticket.Name (string) Required MaxLength(50), 5], [Property: Ticket.Priority (string) Required MaxLength(50), 6], [Property: Ticket.ResolvedAt (DateTime?), 7], [Property: Ticket.Status (string) Required MaxLength(50), 8], [Property: Ticket.Summary (string) Required MaxLength(150), 9], [Property: Ticket.Type (string) Required MaxLength(50), 10] }
+        SELECT t.Id, t.Assignee, t.Category, t.Description, t.DueDate, t.Name, t.Priority, t.ResolvedAt, t.Status, t.Summary, t.Type
+        FROM Tickets AS t, 
+        False, 
+        new HashSet<string>(
+            new string[]{ }, 
+            StringComparer.Ordinal
+        )
+    )].GetRelationalCommandTemplate(parameters), 
+    readerColumns: null, 
+    shaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+    {
+        Ticket entity;
+        entity = 
+        {
+            MaterializationContext materializationContext1;
+            IEntityType entityType1;
+            Ticket instance1;
+            InternalEntityEntry entry1;
+            bool hasNullKey1;
+            materializationContext1 = new MaterializationContext(
+                [LIFTABLE Constant: ValueBuffer | Resolver: _ => (object)ValueBuffer.Empty], 
+                queryContext.Context
+            );
+            instance1 = default(Ticket);
+            entry1 = queryContext.TryGetEntry(
+                key: [LIFTABLE Constant: Key: Ticket.Id PK | Resolver: c => c.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.Ticket").FindPrimaryKey()], 
+                keyValues: new object[]{ (object)dataReader.GetInt32(0) }, 
+                throwOnNullKey: True, 
+                hasNullKey: hasNullKey1);
+            !(hasNullKey1) ? entry1 != default(InternalEntityEntry) ? 
+            {
+                entityType1 = entry1.EntityType;
+                return instance1 = (Ticket)entry1.Entity;
+            } : 
+            {
+                ISnapshot shadowSnapshot1;
+                shadowSnapshot1 = [LIFTABLE Constant: Snapshot | Resolver: _ => Snapshot.Empty];
+                entityType1 = [LIFTABLE Constant: EntityType: Ticket | Resolver: namelessParameter{0} => namelessParameter{0}.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.Ticket")];
+                instance1 = switch (entityType1)
+                {
+                    case [LIFTABLE Constant: EntityType: Ticket | Resolver: namelessParameter{1} => namelessParameter{1}.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.Ticket")]: 
+                        {
+                            return 
+                            {
+                                Ticket instance;
+                                instance = new Ticket();
+                                instance.<Id>k__BackingField = dataReader.GetInt32(0);
+                                instance.<Assignee>k__BackingField = dataReader.GetString(1);
+                                instance.<Category>k__BackingField = dataReader.GetString(2);
+                                instance.<Description>k__BackingField = dataReader.GetString(3);
+                                instance.<DueDate>k__BackingField = dataReader.GetDateTime(4);
+                                instance.<Name>k__BackingField = dataReader.GetString(5);
+                                instance.<Priority>k__BackingField = dataReader.GetString(6);
+                                instance.<ResolvedAt>k__BackingField = dataReader.IsDBNull(7) ? default(DateTime?) : (DateTime?)dataReader.GetDateTime(7);
+                                instance.<Status>k__BackingField = dataReader.GetString(8);
+                                instance.<Summary>k__BackingField = dataReader.GetString(9);
+                                instance.<Type>k__BackingField = dataReader.GetString(10);
+                                (instance is IInjectableService) ? ((IInjectableService)instance).Injected(
+                                    context: materializationContext1.Context, 
+                                    entity: instance, 
+                                    queryTrackingBehavior: TrackAll, 
+                                    structuralType: [LIFTABLE Constant: EntityType: Ticket | Resolver: namelessParameter{2} => namelessParameter{2}.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.Ticket")]) : default(void);
+                                return instance;
+                            }}
+                    default: 
+                        default(Ticket)
+                }
+                ;
+                entry1 = entityType1 == default(IEntityType) ? default(InternalEntityEntry) : queryContext.StartTracking(
+                    entityType: entityType1, 
+                    entity: instance1, 
+                    snapshot: shadowSnapshot1);
+                return instance1;
+            } : default(void);
+            return instance1;
+        };
+        return entity;
+    }, 
+    contextType: ASI.Basecode.Data.AsiBasecodeDBContext, 
+    standAloneStateManager: False, 
+    detailedErrorsEnabled: False, 
+    threadSafetyChecksEnabled: True)'
+2025-11-18 00:04:06.723 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:04:06.752 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:04:06.754 +08:00 [DBG] Created DbConnection. (31ms).
+2025-11-18 00:04:06.756 +08:00 [DBG] Created DbConnection. (31ms).
+2025-11-18 00:04:06.757 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:04:06.758 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:04:06.783 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:04:06.806 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:04:06.852 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:04:06.858 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:04:06.859 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (1ms).
+2025-11-18 00:04:06.894 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:04:06.903 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:04:06.908 +08:00 [DBG] Disposed connection to database '' on server '' (5ms).
+2025-11-18 00:04:08.062 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:04:08.080 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:04:08.083 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:04:08.092 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:04:08.095 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (3ms).
+2025-11-18 00:04:08.099 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:04:08.102 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:04:08.105 +08:00 [DBG] Disposed connection to database '' on server '' (2ms).
+2025-11-18 00:13:28.906 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:13:28.907 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:13:28.910 +08:00 [DBG] Created DbConnection. (1ms).
+2025-11-18 00:13:28.938 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:13:28.956 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:13:28.958 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:13:28.959 +08:00 [DBG] Created DbConnection. (1ms).
+2025-11-18 00:13:28.961 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:13:30.209 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:13:30.259 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:13:30.260 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:13:30.266 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:13:30.268 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (2ms).
+2025-11-18 00:13:30.339 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:13:30.374 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:13:30.377 +08:00 [DBG] Disposed connection to database '' on server '' (34ms).
+2025-11-18 00:13:31.069 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:13:31.091 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:13:31.097 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:13:31.107 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:13:31.109 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (2ms).
+2025-11-18 00:13:31.116 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:13:31.118 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:13:31.120 +08:00 [DBG] Disposed connection to database '' on server '' (2ms).
+2025-11-18 00:13:31.890 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:13:31.893 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:13:31.897 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:13:31.936 +08:00 [DBG] Created DbConnection. (2ms).
+2025-11-18 00:13:31.940 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:13:31.942 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:13:31.944 +08:00 [DBG] Created DbConnection. (7ms).
+2025-11-18 00:13:31.946 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:13:31.949 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:13:31.960 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:13:31.973 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:13:31.976 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:13:31.982 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:13:32.009 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (1ms).
+2025-11-18 00:13:32.015 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:13:32.044 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:13:32.046 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:13:32.071 +08:00 [DBG] Disposed connection to database '' on server '' (27ms).
+2025-11-18 00:13:32.051 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:13:32.077 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:13:32.079 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (2ms).
+2025-11-18 00:13:32.081 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:13:32.083 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:13:32.085 +08:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-11-18 00:14:27.143 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:14:27.147 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:14:27.179 +08:00 [DBG] Created DbConnection. (3ms).
+2025-11-18 00:14:27.236 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:14:27.239 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:14:27.275 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:14:27.305 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:14:27.308 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:14:27.344 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:14:27.353 +08:00 [DBG] Created DbConnection. (44ms).
+2025-11-18 00:14:27.363 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:14:27.375 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:14:27.411 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:14:27.417 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (6ms).
+2025-11-18 00:14:27.455 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:14:27.457 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:14:27.464 +08:00 [DBG] Disposed connection to database '' on server '' (2ms).
+2025-11-18 00:14:27.471 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:14:27.515 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:14:27.553 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:14:27.556 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (3ms).
+2025-11-18 00:14:27.559 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:14:27.561 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:14:27.563 +08:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-11-18 00:15:34.390 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:15:34.411 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:15:34.413 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:15:34.418 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:15:34.442 +08:00 [DBG] Created DbConnection. (2ms).
+2025-11-18 00:15:34.444 +08:00 [DBG] Created DbConnection. (30ms).
+2025-11-18 00:15:34.446 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:15:34.473 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:15:34.505 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:15:34.507 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:15:34.616 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:15:34.622 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:15:34.625 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:15:34.626 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:15:34.676 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:15:34.678 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:15:34.684 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (16ms).
+2025-11-18 00:15:34.724 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (13ms).
+2025-11-18 00:15:34.727 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:15:34.729 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:15:34.770 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:15:34.770 +08:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-11-18 00:15:34.773 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:15:34.784 +08:00 [DBG] Disposed connection to database '' on server '' (3ms).
+2025-11-18 00:17:05.453 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:17:05.455 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:17:05.457 +08:00 [DBG] Created DbConnection. (2ms).
+2025-11-18 00:17:05.459 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:17:05.462 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:17:05.522 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:17:05.561 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:17:05.570 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:17:05.579 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (2ms).
+2025-11-18 00:17:05.608 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:17:05.608 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:17:05.611 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:17:05.614 +08:00 [DBG] Disposed connection to database '' on server '' (3ms).
+2025-11-18 00:17:05.620 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:17:05.623 +08:00 [DBG] Created DbConnection. (4ms).
+2025-11-18 00:17:05.631 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:17:05.690 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:17:05.717 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:17:05.730 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:17:05.742 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:17:05.745 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (4ms).
+2025-11-18 00:17:05.777 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:17:05.781 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:17:05.785 +08:00 [DBG] Disposed connection to database '' on server '' (4ms).
+2025-11-18 00:25:22.486 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:25:22.536 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:25:22.540 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:25:22.543 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:25:22.547 +08:00 [DBG] Created DbConnection. (2ms).
+2025-11-18 00:25:22.548 +08:00 [DBG] Created DbConnection. (4ms).
+2025-11-18 00:25:22.554 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:25:22.556 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:25:23.828 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:25:23.846 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:25:23.849 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:25:23.860 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:25:23.863 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (7ms).
+2025-11-18 00:25:23.866 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:25:23.868 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:25:23.870 +08:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-11-18 00:25:24.702 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:25:24.756 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:25:24.760 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:25:24.770 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:25:24.773 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (3ms).
+2025-11-18 00:25:24.778 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:25:24.781 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:25:24.783 +08:00 [DBG] Disposed connection to database '' on server '' (2ms).
+2025-11-18 00:31:25.392 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:31:25.395 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:31:25.398 +08:00 [DBG] Created DbConnection. (2ms).
+2025-11-18 00:31:25.401 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:31:25.590 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:31:25.593 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:31:25.597 +08:00 [DBG] Created DbConnection. (3ms).
+2025-11-18 00:31:25.600 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:31:26.676 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:31:26.713 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:31:26.717 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:31:26.727 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:31:26.731 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (3ms).
+2025-11-18 00:31:26.735 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:31:26.739 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:31:26.742 +08:00 [DBG] Disposed connection to database '' on server '' (3ms).
+2025-11-18 00:31:27.534 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:31:27.584 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:31:27.589 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:31:27.600 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:31:27.605 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (4ms).
+2025-11-18 00:31:27.630 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:31:27.633 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:31:27.637 +08:00 [DBG] Disposed connection to database '' on server '' (3ms).
+2025-11-18 00:39:45.668 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:39:45.694 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:39:45.725 +08:00 [DBG] Created DbConnection. (26ms).
+2025-11-18 00:39:45.755 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:39:45.760 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:39:45.764 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:39:45.767 +08:00 [DBG] Created DbConnection. (3ms).
+2025-11-18 00:39:45.770 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:39:47.052 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:39:47.088 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:39:47.096 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:39:47.113 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:39:47.117 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (4ms).
+2025-11-18 00:39:47.124 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:39:47.129 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:39:47.133 +08:00 [DBG] Disposed connection to database '' on server '' (4ms).
+2025-11-18 00:39:47.949 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:39:47.982 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:39:47.986 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:39:47.997 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:39:48.001 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (3ms).
+2025-11-18 00:39:48.005 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:39:48.009 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:39:48.012 +08:00 [DBG] Disposed connection to database '' on server '' (3ms).
+2025-11-18 00:44:46.028 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:44:46.032 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:44:46.035 +08:00 [DBG] Created DbConnection. (3ms).
+2025-11-18 00:44:46.038 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:44:46.058 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:44:46.061 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:44:46.064 +08:00 [DBG] Created DbConnection. (2ms).
+2025-11-18 00:44:46.067 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:44:47.316 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:44:47.345 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:44:47.349 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:44:47.360 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:44:47.364 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (4ms).
+2025-11-18 00:44:47.368 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:44:47.372 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:44:47.376 +08:00 [DBG] Disposed connection to database '' on server '' (4ms).
+2025-11-18 00:44:48.195 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:44:48.220 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:44:48.225 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:44:48.236 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:44:48.240 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (3ms).
+2025-11-18 00:44:48.246 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:44:48.275 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:44:48.279 +08:00 [DBG] Disposed connection to database '' on server '' (29ms).
+2025-11-18 00:49:38.796 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:49:38.831 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:49:38.841 +08:00 [DBG] Created DbConnection. (35ms).
+2025-11-18 00:49:38.846 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:49:38.875 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:49:38.906 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:49:38.909 +08:00 [DBG] Created DbConnection. (30ms).
+2025-11-18 00:49:38.913 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:49:40.181 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:49:40.212 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:49:40.217 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:49:40.227 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:49:40.231 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (3ms).
+2025-11-18 00:49:40.235 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:49:40.237 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:49:40.240 +08:00 [DBG] Disposed connection to database '' on server '' (2ms).
+2025-11-18 00:49:41.063 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:49:41.092 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:49:41.098 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:49:41.114 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:49:41.118 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (4ms).
+2025-11-18 00:49:41.124 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:49:41.129 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:49:41.161 +08:00 [DBG] Disposed connection to database '' on server '' (4ms).
+2025-11-18 00:52:29.665 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:52:29.668 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:52:29.703 +08:00 [DBG] Created DbConnection. (2ms).
+2025-11-18 00:52:29.708 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 00:52:29.735 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:52:29.739 +08:00 [DBG] Creating DbConnection.
+2025-11-18 00:52:29.743 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:52:29.745 +08:00 [DBG] Created DbConnection. (4ms).
+2025-11-18 00:52:29.751 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:52:29.767 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:52:29.811 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:52:29.814 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:52:29.841 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:52:29.846 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 00:52:29.858 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:52:29.865 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:52:29.867 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (9ms).
+2025-11-18 00:52:29.904 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (6ms).
+2025-11-18 00:52:29.935 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:52:29.939 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:52:29.942 +08:00 [DBG] Disposed connection to database '' on server '' (3ms).
+2025-11-18 00:52:29.986 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 00:52:30.016 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 00:52:30.024 +08:00 [DBG] Disposed connection to database '' on server '' (30ms).
+2025-11-18 01:01:09.693 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 01:01:09.702 +08:00 [DBG] Compiling query expression: 
+'DbSet<Ticket>()
+    .Max(x => (int?)x.Id)'
+2025-11-18 01:01:09.816 +08:00 [DBG] Generated query execution expression: 
+'queryContext => SingleQueryingEnumerable.Create<int?>(
+    relationalQueryContext: (RelationalQueryContext)queryContext, 
+    relationalCommandResolver: parameters => [LIFTABLE Constant: RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT MAX(t.Id)
+        FROM Tickets AS t) | Resolver: c => new RelationalCommandCache(
+        c.Dependencies.MemoryCache, 
+        c.RelationalDependencies.QuerySqlGeneratorFactory, 
+        c.RelationalDependencies.RelationalParameterBasedSqlProcessorFactory, 
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT MAX(t.Id)
+        FROM Tickets AS t, 
+        False, 
+        new HashSet<string>(
+            new string[]{ }, 
+            StringComparer.Ordinal
+        )
+    )].GetRelationalCommandTemplate(parameters), 
+    readerColumns: null, 
+    shaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+    {
+        int? value1;
+        value1 = dataReader.IsDBNull(0) ? default(int?) : (int?)dataReader.GetInt32(0);
+        return 
+        {
+            int? result;
+            result = value1;
+            return result == default(int?) ? default(int?) : result;
+        }}, 
+    contextType: ASI.Basecode.Data.AsiBasecodeDBContext, 
+    standAloneStateManager: False, 
+    detailedErrorsEnabled: False, 
+    threadSafetyChecksEnabled: True)
+    .Single()'
+2025-11-18 01:01:09.836 +08:00 [DBG] Creating DbConnection.
+2025-11-18 01:01:09.841 +08:00 [DBG] Created DbConnection. (4ms).
+2025-11-18 01:01:09.845 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:01:11.138 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:01:11.174 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:01:11.179 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (3ms).
+2025-11-18 01:01:11.187 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:01:11.190 +08:00 [DBG] SaveChanges starting for 'AsiBasecodeDBContext'.
+2025-11-18 01:01:11.194 +08:00 [DBG] DetectChanges starting for 'AsiBasecodeDBContext'.
+2025-11-18 01:01:11.216 +08:00 [DBG] DetectChanges completed for 'AsiBasecodeDBContext'.
+2025-11-18 01:01:11.222 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:01:11.225 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:01:11.270 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:01:11.274 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (5ms).
+2025-11-18 01:01:11.280 +08:00 [DBG] An entity of type 'Ticket' tracked by 'AsiBasecodeDBContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:01:11.285 +08:00 [DBG] SaveChanges completed for 'AsiBasecodeDBContext' with 1 entities written to the database.
+2025-11-18 01:01:11.328 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 01:01:11.337 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:01:11.340 +08:00 [DBG] Disposed connection to database '' on server '' (8ms).
+2025-11-18 01:01:21.883 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 01:01:21.887 +08:00 [DBG] Creating DbConnection.
+2025-11-18 01:01:21.890 +08:00 [DBG] Created DbConnection. (3ms).
+2025-11-18 01:01:21.893 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 01:01:21.896 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:01:21.899 +08:00 [DBG] Creating DbConnection.
+2025-11-18 01:01:21.902 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:01:21.933 +08:00 [DBG] Created DbConnection. (6ms).
+2025-11-18 01:01:21.968 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:01:22.002 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:01:22.006 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:01:22.011 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:01:22.057 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:01:22.061 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (9ms).
+2025-11-18 01:01:22.066 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 01:01:22.070 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:01:22.075 +08:00 [DBG] Disposed connection to database '' on server '' (4ms).
+2025-11-18 01:01:23.291 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:01:23.314 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:01:23.320 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:01:23.324 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:01:23.336 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:01:23.339 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (3ms).
+2025-11-18 01:01:23.343 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 01:01:23.346 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:01:23.349 +08:00 [DBG] Disposed connection to database '' on server '' (3ms).
+2025-11-18 01:01:35.361 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 01:01:35.400 +08:00 [DBG] Compiling query expression: 
+'DbSet<Ticket>()
+    .FirstOrDefault(e => EF.Property<int>(e, "Id") == __p_0)'
+2025-11-18 01:01:35.436 +08:00 [DBG] Generated query execution expression: 
+'queryContext => SingleQueryingEnumerable.Create<Ticket>(
+    relationalQueryContext: (RelationalQueryContext)queryContext, 
+    relationalCommandResolver: parameters => [LIFTABLE Constant: RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Ticket.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Ticket.Assignee (string) Required MaxLength(50), 1], [Property: Ticket.Category (string) Required MaxLength(50), 2], [Property: Ticket.Description (string) Required, 3], [Property: Ticket.DueDate (DateTime) Required, 4], [Property: Ticket.Name (string) Required MaxLength(50), 5], [Property: Ticket.Priority (string) Required MaxLength(50), 6], [Property: Ticket.ResolvedAt (DateTime?), 7], [Property: Ticket.Status (string) Required MaxLength(50), 8], [Property: Ticket.Summary (string) Required MaxLength(150), 9], [Property: Ticket.Type (string) Required MaxLength(50), 10] }
+        SELECT TOP(1) t.Id, t.Assignee, t.Category, t.Description, t.DueDate, t.Name, t.Priority, t.ResolvedAt, t.Status, t.Summary, t.Type
+        FROM Tickets AS t
+        WHERE t.Id == @__p_0) | Resolver: c => new RelationalCommandCache(
+        c.Dependencies.MemoryCache, 
+        c.RelationalDependencies.QuerySqlGeneratorFactory, 
+        c.RelationalDependencies.RelationalParameterBasedSqlProcessorFactory, 
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Ticket.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Ticket.Assignee (string) Required MaxLength(50), 1], [Property: Ticket.Category (string) Required MaxLength(50), 2], [Property: Ticket.Description (string) Required, 3], [Property: Ticket.DueDate (DateTime) Required, 4], [Property: Ticket.Name (string) Required MaxLength(50), 5], [Property: Ticket.Priority (string) Required MaxLength(50), 6], [Property: Ticket.ResolvedAt (DateTime?), 7], [Property: Ticket.Status (string) Required MaxLength(50), 8], [Property: Ticket.Summary (string) Required MaxLength(150), 9], [Property: Ticket.Type (string) Required MaxLength(50), 10] }
+        SELECT TOP(1) t.Id, t.Assignee, t.Category, t.Description, t.DueDate, t.Name, t.Priority, t.ResolvedAt, t.Status, t.Summary, t.Type
+        FROM Tickets AS t
+        WHERE t.Id == @__p_0, 
+        False, 
+        new HashSet<string>(
+            new string[]{ }, 
+            StringComparer.Ordinal
+        )
+    )].GetRelationalCommandTemplate(parameters), 
+    readerColumns: null, 
+    shaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+    {
+        Ticket entity;
+        entity = 
+        {
+            MaterializationContext materializationContext1;
+            IEntityType entityType1;
+            Ticket instance1;
+            InternalEntityEntry entry1;
+            bool hasNullKey1;
+            materializationContext1 = new MaterializationContext(
+                [LIFTABLE Constant: ValueBuffer | Resolver: _ => (object)ValueBuffer.Empty], 
+                queryContext.Context
+            );
+            instance1 = default(Ticket);
+            entry1 = queryContext.TryGetEntry(
+                key: [LIFTABLE Constant: Key: Ticket.Id PK | Resolver: c => c.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.Ticket").FindPrimaryKey()], 
+                keyValues: new object[]{ (object)dataReader.GetInt32(0) }, 
+                throwOnNullKey: True, 
+                hasNullKey: hasNullKey1);
+            !(hasNullKey1) ? entry1 != default(InternalEntityEntry) ? 
+            {
+                entityType1 = entry1.EntityType;
+                return instance1 = (Ticket)entry1.Entity;
+            } : 
+            {
+                ISnapshot shadowSnapshot1;
+                shadowSnapshot1 = [LIFTABLE Constant: Snapshot | Resolver: _ => Snapshot.Empty];
+                entityType1 = [LIFTABLE Constant: EntityType: Ticket | Resolver: namelessParameter{0} => namelessParameter{0}.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.Ticket")];
+                instance1 = switch (entityType1)
+                {
+                    case [LIFTABLE Constant: EntityType: Ticket | Resolver: namelessParameter{1} => namelessParameter{1}.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.Ticket")]: 
+                        {
+                            return 
+                            {
+                                Ticket instance;
+                                instance = new Ticket();
+                                instance.<Id>k__BackingField = dataReader.GetInt32(0);
+                                instance.<Assignee>k__BackingField = dataReader.GetString(1);
+                                instance.<Category>k__BackingField = dataReader.GetString(2);
+                                instance.<Description>k__BackingField = dataReader.GetString(3);
+                                instance.<DueDate>k__BackingField = dataReader.GetDateTime(4);
+                                instance.<Name>k__BackingField = dataReader.GetString(5);
+                                instance.<Priority>k__BackingField = dataReader.GetString(6);
+                                instance.<ResolvedAt>k__BackingField = dataReader.IsDBNull(7) ? default(DateTime?) : (DateTime?)dataReader.GetDateTime(7);
+                                instance.<Status>k__BackingField = dataReader.GetString(8);
+                                instance.<Summary>k__BackingField = dataReader.GetString(9);
+                                instance.<Type>k__BackingField = dataReader.GetString(10);
+                                (instance is IInjectableService) ? ((IInjectableService)instance).Injected(
+                                    context: materializationContext1.Context, 
+                                    entity: instance, 
+                                    queryTrackingBehavior: TrackAll, 
+                                    structuralType: [LIFTABLE Constant: EntityType: Ticket | Resolver: namelessParameter{2} => namelessParameter{2}.Dependencies.Model.FindEntityType("ASI.Basecode.Data.Models.Ticket")]) : default(void);
+                                return instance;
+                            }}
+                    default: 
+                        default(Ticket)
+                }
+                ;
+                entry1 = entityType1 == default(IEntityType) ? default(InternalEntityEntry) : queryContext.StartTracking(
+                    entityType: entityType1, 
+                    entity: instance1, 
+                    snapshot: shadowSnapshot1);
+                return instance1;
+            } : default(void);
+            return instance1;
+        };
+        return entity;
+    }, 
+    contextType: ASI.Basecode.Data.AsiBasecodeDBContext, 
+    standAloneStateManager: False, 
+    detailedErrorsEnabled: False, 
+    threadSafetyChecksEnabled: True)
+    .SingleOrDefault()'
+2025-11-18 01:01:35.445 +08:00 [DBG] Creating DbConnection.
+2025-11-18 01:01:35.449 +08:00 [DBG] Created DbConnection. (3ms).
+2025-11-18 01:01:35.452 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:01:35.456 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:01:35.484 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:01:35.496 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:01:35.500 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (3ms).
+2025-11-18 01:01:35.510 +08:00 [DBG] SaveChanges starting for 'AsiBasecodeDBContext'.
+2025-11-18 01:01:35.514 +08:00 [DBG] DetectChanges starting for 'AsiBasecodeDBContext'.
+2025-11-18 01:01:35.518 +08:00 [DBG] DetectChanges completed for 'AsiBasecodeDBContext'.
+2025-11-18 01:01:35.521 +08:00 [DBG] SaveChanges completed for 'AsiBasecodeDBContext' with 0 entities written to the database.
+2025-11-18 01:01:35.527 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 01:01:35.529 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:01:35.533 +08:00 [DBG] Disposed connection to database '' on server '' (2ms).
+2025-11-18 01:02:57.181 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 01:02:57.193 +08:00 [DBG] Creating DbConnection.
+2025-11-18 01:02:57.196 +08:00 [DBG] Created DbConnection. (3ms).
+2025-11-18 01:02:57.200 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:02:57.203 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:02:57.229 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:02:57.238 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:02:57.241 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (3ms).
+2025-11-18 01:02:57.245 +08:00 [DBG] SaveChanges starting for 'AsiBasecodeDBContext'.
+2025-11-18 01:02:57.248 +08:00 [DBG] DetectChanges starting for 'AsiBasecodeDBContext'.
+2025-11-18 01:02:57.252 +08:00 [DBG] DetectChanges completed for 'AsiBasecodeDBContext'.
+2025-11-18 01:02:57.255 +08:00 [DBG] SaveChanges completed for 'AsiBasecodeDBContext' with 0 entities written to the database.
+2025-11-18 01:02:57.260 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 01:02:57.264 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:02:57.268 +08:00 [DBG] Disposed connection to database '' on server '' (4ms).
+2025-11-18 01:03:04.257 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 01:03:04.262 +08:00 [DBG] Creating DbConnection.
+2025-11-18 01:03:04.266 +08:00 [DBG] Created DbConnection. (3ms).
+2025-11-18 01:03:04.271 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:03:04.274 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:03:04.302 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:03:04.312 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:03:04.315 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (3ms).
+2025-11-18 01:03:04.320 +08:00 [DBG] SaveChanges starting for 'AsiBasecodeDBContext'.
+2025-11-18 01:03:04.348 +08:00 [DBG] DetectChanges starting for 'AsiBasecodeDBContext'.
+2025-11-18 01:03:04.354 +08:00 [DBG] The unchanged property 'Ticket.ResolvedAt' was detected as changed and will be marked as modified. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-11-18 01:03:04.358 +08:00 [DBG] An entity of type 'Ticket' tracked by 'AsiBasecodeDBContext' changed state from '"Unchanged"' to '"Modified"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:03:04.361 +08:00 [DBG] DetectChanges completed for 'AsiBasecodeDBContext'.
+2025-11-18 01:03:04.374 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:03:04.377 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:03:04.408 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:03:04.412 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (3ms).
+2025-11-18 01:03:04.418 +08:00 [DBG] An entity of type 'Ticket' tracked by 'AsiBasecodeDBContext' changed state from '"Modified"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:03:04.422 +08:00 [DBG] SaveChanges completed for 'AsiBasecodeDBContext' with 1 entities written to the database.
+2025-11-18 01:03:04.459 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 01:03:04.462 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:03:04.465 +08:00 [DBG] Disposed connection to database '' on server '' (2ms).
+2025-11-18 01:03:14.059 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 01:03:14.063 +08:00 [DBG] Creating DbConnection.
+2025-11-18 01:03:14.067 +08:00 [DBG] Created DbConnection. (3ms).
+2025-11-18 01:03:14.070 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:03:14.073 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:03:14.098 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:03:14.109 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:03:14.113 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (3ms).
+2025-11-18 01:03:14.117 +08:00 [DBG] SaveChanges starting for 'AsiBasecodeDBContext'.
+2025-11-18 01:03:14.148 +08:00 [DBG] DetectChanges starting for 'AsiBasecodeDBContext'.
+2025-11-18 01:03:14.152 +08:00 [DBG] The unchanged property 'Ticket.ResolvedAt' was detected as changed and will be marked as modified. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-11-18 01:03:14.155 +08:00 [DBG] An entity of type 'Ticket' tracked by 'AsiBasecodeDBContext' changed state from '"Unchanged"' to '"Modified"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:03:14.158 +08:00 [DBG] DetectChanges completed for 'AsiBasecodeDBContext'.
+2025-11-18 01:03:14.162 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:03:14.165 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:03:14.203 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:03:14.206 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (5ms).
+2025-11-18 01:03:14.209 +08:00 [DBG] An entity of type 'Ticket' tracked by 'AsiBasecodeDBContext' changed state from '"Modified"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:03:14.212 +08:00 [DBG] SaveChanges completed for 'AsiBasecodeDBContext' with 1 entities written to the database.
+2025-11-18 01:03:14.215 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 01:03:14.218 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:03:14.222 +08:00 [DBG] Disposed connection to database '' on server '' (2ms).
+2025-11-18 01:06:41.086 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 01:06:41.113 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 01:06:41.145 +08:00 [DBG] Creating DbConnection.
+2025-11-18 01:06:41.149 +08:00 [DBG] Created DbConnection. (32ms).
+2025-11-18 01:06:41.153 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:06:41.156 +08:00 [DBG] Creating DbConnection.
+2025-11-18 01:06:41.160 +08:00 [DBG] Created DbConnection. (43ms).
+2025-11-18 01:06:41.164 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:06:41.177 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:06:41.183 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:06:41.243 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:06:41.247 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:06:41.271 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:06:41.275 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:06:41.278 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:06:41.293 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:06:41.298 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:06:41.305 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (10ms).
+2025-11-18 01:06:41.342 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:06:41.346 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (4ms).
+2025-11-18 01:06:41.350 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 01:06:41.353 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 01:06:41.360 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:06:41.356 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:06:41.395 +08:00 [DBG] Disposed connection to database '' on server '' (8ms).
+2025-11-18 01:06:41.398 +08:00 [DBG] Disposed connection to database '' on server '' (41ms).
+2025-11-18 01:06:53.441 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 01:06:53.445 +08:00 [DBG] Creating DbConnection.
+2025-11-18 01:06:53.447 +08:00 [DBG] Created DbConnection. (3ms).
+2025-11-18 01:06:53.450 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:06:53.453 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:06:53.474 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:06:53.483 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:06:53.486 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (3ms).
+2025-11-18 01:06:53.489 +08:00 [DBG] SaveChanges starting for 'AsiBasecodeDBContext'.
+2025-11-18 01:06:53.491 +08:00 [DBG] DetectChanges starting for 'AsiBasecodeDBContext'.
+2025-11-18 01:06:53.495 +08:00 [DBG] DetectChanges completed for 'AsiBasecodeDBContext'.
+2025-11-18 01:06:53.497 +08:00 [DBG] SaveChanges completed for 'AsiBasecodeDBContext' with 0 entities written to the database.
+2025-11-18 01:06:53.500 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 01:06:53.503 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:06:53.505 +08:00 [DBG] Disposed connection to database '' on server '' (2ms).
+2025-11-18 01:07:10.814 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 01:07:10.818 +08:00 [DBG] Creating DbConnection.
+2025-11-18 01:07:10.821 +08:00 [DBG] Created DbConnection. (3ms).
+2025-11-18 01:07:10.823 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:07:10.826 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:07:10.847 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:07:10.856 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:07:10.861 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (3ms).
+2025-11-18 01:07:10.864 +08:00 [DBG] SaveChanges starting for 'AsiBasecodeDBContext'.
+2025-11-18 01:07:10.868 +08:00 [DBG] DetectChanges starting for 'AsiBasecodeDBContext'.
+2025-11-18 01:07:10.872 +08:00 [DBG] DetectChanges completed for 'AsiBasecodeDBContext'.
+2025-11-18 01:07:10.876 +08:00 [DBG] SaveChanges completed for 'AsiBasecodeDBContext' with 0 entities written to the database.
+2025-11-18 01:07:10.881 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 01:07:10.885 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:07:10.888 +08:00 [DBG] Disposed connection to database '' on server '' (3ms).
+2025-11-18 01:09:25.734 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 01:09:25.737 +08:00 [DBG] Creating DbConnection.
+2025-11-18 01:09:25.773 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 01:09:25.776 +08:00 [DBG] Created DbConnection. (3ms).
+2025-11-18 01:09:25.782 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:09:25.824 +08:00 [DBG] Creating DbConnection.
+2025-11-18 01:09:25.831 +08:00 [DBG] Created DbConnection. (42ms).
+2025-11-18 01:09:25.837 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:09:25.841 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:09:25.852 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:09:25.925 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:09:25.928 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:09:25.961 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:09:25.967 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:09:25.972 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:09:25.976 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:09:25.981 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:09:25.990 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (5ms).
+2025-11-18 01:09:25.992 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:09:25.995 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (5ms).
+2025-11-18 01:09:26.000 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 01:09:26.002 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 01:09:26.041 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:09:26.049 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:09:26.051 +08:00 [DBG] Disposed connection to database '' on server '' (43ms).
+2025-11-18 01:09:26.055 +08:00 [DBG] Disposed connection to database '' on server '' (48ms).
+2025-11-18 01:15:15.211 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 01:15:15.243 +08:00 [DBG] Creating DbConnection.
+2025-11-18 01:15:15.246 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 01:15:15.249 +08:00 [DBG] Created DbConnection. (27ms).
+2025-11-18 01:15:15.259 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:15:15.290 +08:00 [DBG] Creating DbConnection.
+2025-11-18 01:15:15.320 +08:00 [DBG] Created DbConnection. (40ms).
+2025-11-18 01:15:15.329 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:15:16.629 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:15:16.660 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:15:16.665 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:15:16.669 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:15:16.679 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:15:16.681 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (3ms).
+2025-11-18 01:15:16.684 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 01:15:16.686 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:15:16.689 +08:00 [DBG] Disposed connection to database '' on server '' (2ms).
+2025-11-18 01:15:17.496 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:15:17.521 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:15:17.526 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:15:17.530 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:15:17.543 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:15:17.546 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (3ms).
+2025-11-18 01:15:17.552 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 01:15:17.556 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:15:17.560 +08:00 [DBG] Disposed connection to database '' on server '' (3ms).
+2025-11-18 01:23:18.548 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 01:23:18.549 +08:00 [DBG] Creating DbConnection.
+2025-11-18 01:23:18.552 +08:00 [DBG] Created DbConnection. (1ms).
+2025-11-18 01:23:18.555 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:18.599 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 01:23:18.603 +08:00 [DBG] Creating DbConnection.
+2025-11-18 01:23:18.606 +08:00 [DBG] Created DbConnection. (3ms).
+2025-11-18 01:23:18.609 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:19.834 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:19.861 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:23:19.865 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:23:19.868 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:23:19.877 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:19.882 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (4ms).
+2025-11-18 01:23:19.885 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 01:23:19.889 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:19.893 +08:00 [DBG] Disposed connection to database '' on server '' (3ms).
+2025-11-18 01:23:20.537 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 01:23:20.541 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 01:23:20.580 +08:00 [DBG] Creating DbConnection.
+2025-11-18 01:23:20.583 +08:00 [DBG] Creating DbConnection.
+2025-11-18 01:23:20.587 +08:00 [DBG] Created DbConnection. (42ms).
+2025-11-18 01:23:20.611 +08:00 [DBG] Created DbConnection. (6ms).
+2025-11-18 01:23:20.614 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:20.618 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:20.700 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:20.729 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:23:20.733 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:23:20.736 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:23:20.748 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:20.752 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (4ms).
+2025-11-18 01:23:20.756 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 01:23:20.760 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:20.796 +08:00 [DBG] Disposed connection to database '' on server '' (3ms).
+2025-11-18 01:23:21.493 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:21.536 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:23:21.542 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:23:21.546 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:23:21.556 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:21.560 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (3ms).
+2025-11-18 01:23:21.564 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 01:23:21.567 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:21.602 +08:00 [DBG] Disposed connection to database '' on server '' (3ms).
+2025-11-18 01:23:22.358 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:22.375 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:23:22.378 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:23:22.380 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:23:22.389 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:22.392 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (3ms).
+2025-11-18 01:23:22.396 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 01:23:22.398 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:22.402 +08:00 [DBG] Disposed connection to database '' on server '' (2ms).
+2025-11-18 01:23:31.862 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 01:23:31.873 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 01:23:31.876 +08:00 [DBG] Creating DbConnection.
+2025-11-18 01:23:31.910 +08:00 [DBG] Created DbConnection. (12ms).
+2025-11-18 01:23:31.911 +08:00 [DBG] Creating DbConnection.
+2025-11-18 01:23:31.917 +08:00 [DBG] Created DbConnection. (33ms).
+2025-11-18 01:23:31.924 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:31.955 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:31.987 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:31.998 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:32.033 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:23:32.036 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:23:32.044 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:23:32.048 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:23:32.052 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:23:32.061 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 01:23:32.070 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:32.097 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:32.099 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (36ms).
+2025-11-18 01:23:32.102 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (5ms).
+2025-11-18 01:23:32.106 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 01:23:32.143 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 01:23:32.147 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:32.151 +08:00 [DBG] Disposed connection to database '' on server '' (4ms).
+2025-11-18 01:23:32.156 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 01:23:32.159 +08:00 [DBG] Disposed connection to database '' on server '' (12ms).
+2025-11-18 09:42:04.833 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 09:42:04.835 +08:00 [DBG] Creating DbConnection.
+2025-11-18 09:42:04.836 +08:00 [DBG] Created DbConnection. (1ms).
+2025-11-18 09:42:04.837 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 09:42:04.839 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 09:42:04.852 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 09:42:04.856 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 09:42:04.857 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (1ms).
+2025-11-18 09:42:04.860 +08:00 [DBG] SaveChanges starting for 'AsiBasecodeDBContext'.
+2025-11-18 09:42:04.861 +08:00 [DBG] DetectChanges starting for 'AsiBasecodeDBContext'.
+2025-11-18 09:42:04.862 +08:00 [DBG] The unchanged property 'Ticket.Priority' was detected as changed and will be marked as modified. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-11-18 09:42:04.864 +08:00 [DBG] An entity of type 'Ticket' tracked by 'AsiBasecodeDBContext' changed state from '"Unchanged"' to '"Modified"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 09:42:04.869 +08:00 [DBG] DetectChanges completed for 'AsiBasecodeDBContext'.
+2025-11-18 09:42:04.870 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 09:42:04.872 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 09:42:04.891 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 09:42:04.898 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (3ms).
+2025-11-18 09:42:04.899 +08:00 [DBG] An entity of type 'Ticket' tracked by 'AsiBasecodeDBContext' changed state from '"Modified"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 09:42:04.901 +08:00 [DBG] SaveChanges completed for 'AsiBasecodeDBContext' with 1 entities written to the database.
+2025-11-18 09:42:04.906 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 09:42:04.908 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 09:42:04.909 +08:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-11-18 09:42:11.283 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 09:42:11.284 +08:00 [DBG] Creating DbConnection.
+2025-11-18 09:42:11.286 +08:00 [DBG] Created DbConnection. (1ms).
+2025-11-18 09:42:11.287 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 09:42:11.288 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 09:42:11.296 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 09:42:11.298 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 09:42:11.300 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 09:42:11.304 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 09:42:11.305 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (1ms).
+2025-11-18 09:42:11.306 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 09:42:11.308 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 09:42:11.337 +08:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-11-18 09:42:11.374 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 09:42:11.375 +08:00 [DBG] Creating DbConnection.
+2025-11-18 09:42:11.377 +08:00 [DBG] Created DbConnection. (1ms).
+2025-11-18 09:42:11.378 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 09:42:11.379 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 09:42:11.387 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 09:42:11.389 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 09:42:11.392 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 09:42:11.398 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 09:42:11.400 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (1ms).
+2025-11-18 09:42:11.401 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 09:42:11.402 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 09:42:11.404 +08:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-11-18 09:42:18.465 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 09:42:18.466 +08:00 [DBG] Creating DbConnection.
+2025-11-18 09:42:18.468 +08:00 [DBG] Created DbConnection. (1ms).
+2025-11-18 09:42:18.469 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 09:42:18.471 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 09:42:18.480 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 09:42:18.481 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 09:42:18.483 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 09:42:18.521 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 09:42:18.522 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (1ms).
+2025-11-18 09:42:18.524 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 09:42:18.527 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 09:42:18.528 +08:00 [DBG] Disposed connection to database '' on server '' (2ms).
+2025-11-18 09:42:18.532 +08:00 [DBG] Entity Framework Core 9.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.6' with options: CommandTimeout=120 EngineType=SqlServer 
+2025-11-18 09:42:18.534 +08:00 [DBG] Creating DbConnection.
+2025-11-18 09:42:18.535 +08:00 [DBG] Created DbConnection. (1ms).
+2025-11-18 09:42:18.538 +08:00 [DBG] Opening connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 09:42:18.539 +08:00 [DBG] Opened connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 09:42:18.547 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 09:42:18.549 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 09:42:18.551 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Ticket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-18 09:42:18.554 +08:00 [DBG] Closing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 09:42:18.556 +08:00 [DBG] Closed connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB' (1ms).
+2025-11-18 09:42:18.557 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2025-11-18 09:42:18.559 +08:00 [DBG] Disposing connection to database 'CacheFlowDB' on server '(localdb)\MSSQLLocalDB'.
+2025-11-18 09:42:18.560 +08:00 [DBG] Disposed connection to database '' on server '' (1ms).

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace ASI.Basecode.WebApp.Controllers
 {
-    [Route("users")]
+    [Route("api/users")]
     [ApiController]
     public class UserController : ControllerBase
     {

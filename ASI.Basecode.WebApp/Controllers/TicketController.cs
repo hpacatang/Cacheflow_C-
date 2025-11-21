@@ -1,11 +1,13 @@
 using System;
+using System.IO;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
 using ASI.Basecode.Data;
 using ASI.Basecode.Data.Models;
 using System.Text.Json;
-using Microsoft.Extensions.Logging;
 
 namespace ASI.Basecode.WebApp.Controllers
 {
@@ -15,293 +17,250 @@ namespace ASI.Basecode.WebApp.Controllers
     public class TicketController : ControllerBase
     {
         private readonly AsiBasecodeDBContext _context;
-        private readonly ILogger<TicketController> _logger;
-        public TicketController(AsiBasecodeDBContext ctx, ILogger<TicketController> logger) { _context = ctx; _logger = logger; }
+        private readonly IWebHostEnvironment _environment;
+        private const string ATTACHMENT_FOLDER = "TicketAttachments";
 
-        // Quick DB connectivity test
-        [HttpGet("dbtest")]
-        public IActionResult DbTest()
+        public TicketController(AsiBasecodeDBContext ctx, IWebHostEnvironment environment) 
+        { 
+            _context = ctx; 
+            _environment = environment;
+            EnsureAttachmentFolderExists();
+        }
+
+        private void EnsureAttachmentFolderExists()
         {
-            try
+            var attachmentPath = Path.Combine(_environment.WebRootPath ?? _environment.ContentRootPath, ATTACHMENT_FOLDER);
+            if (!Directory.Exists(attachmentPath))
             {
-                var count = _context.Tickets.Count();
-                return Ok(new { ok = true, ticketCount = count });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "DB test failed");
-                return StatusCode(500, new { ok = false, error = ex.Message });
+                Directory.CreateDirectory(attachmentPath);
             }
         }
 
-        // GET https://localhost:56201/api/ticket
+        // GET /api/ticket
         [HttpGet]
         public IActionResult GetAll() 
         {
-            try 
-            {
-                return Ok(_context.Tickets.ToList());
-            } 
-            catch (System.Exception ex) 
-            {
-                _logger.LogError(ex, "Error fetching tickets");
-                return StatusCode(500, $"Database error: {ex.Message}");
-            }
+            return Ok(_context.Tickets.ToList());
         }
 
-        // GET https://localhost:56201/api/ticket/{id}
+        // GET /api/ticket/{id}
         [HttpGet("{id:int}")]
         public IActionResult GetOne(int id)
         {
-            try
-            {
-                var t = _context.Tickets.Find(id);
-                return t is null ? NotFound() : Ok(t);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error fetching ticket {Id}", id);
-                return StatusCode(500, ex.Message);
-            }
+            var ticket = _context.Tickets.Find(id);
+            return ticket is null ? NotFound() : Ok(ticket);
         }
 
-        /*
-         * POST https://localhost:56201/api/ticket
-         * Creates a new ticket
-         * 
-         * JSON Body (required fields):
-         * {
-         *   "summary": "Issue title",
-         *   "userID": 1,
-         *   "agentID": 2,
-         *   "type": "hardware",
-         *   "description": "Detailed description",
-         *   "dueDate": "2025-10-31T17:00:00Z",
-         *   "priority": "high",
-         *   "category": "Hardware"
-         * }
-         */
+        // POST /api/ticket
         [HttpPost]
-        public IActionResult Create([FromBody] Ticket ticket)
+        public IActionResult Create([FromForm] Ticket ticket, IFormFile? attachment)
         {
-            try
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            if (ticket.Id != 0)
             {
-                if (!ModelState.IsValid) return BadRequest(ModelState);
-
-                if (ticket.Id != 0)
-                {
-                    if (_context.Tickets.Any(x => x.Id == ticket.Id))
-                    {
-                        return Conflict(new { success = false, message = "Ticket Id already exists" });
-                    }
-                }
-                else
-                {
-                    ticket.Id = (_context.Tickets.Max(x => (int?)x.Id) ?? 0) + 1;
-                }
-
-                ticket.Status ??= "open";
-                ticket.ResolvedAt ??= null;
-
-                ticket.CreatedTime = DateTime.UtcNow;
-                ticket.UpdatedTime = DateTime.UtcNow;
-
-                _context.Tickets.Add(ticket);
-                _context.SaveChanges();
-
-                return CreatedAtAction(nameof(GetOne), new { id = ticket.Id }, ticket);
+                if (_context.Tickets.Any(x => x.Id == ticket.Id))
+                    return Conflict(new { success = false, message = "Ticket Id already exists" });
             }
-            catch (Exception ex)
+            else
             {
-                _logger.LogError(ex, "Error creating ticket: {@Ticket}", ticket);
-                return StatusCode(500, new { success = false, error = ex.Message });
+                ticket.Id = (_context.Tickets.Max(x => (int?)x.Id) ?? 0) + 1;
             }
+
+            ticket.Status ??= "open";
+            ticket.ResolvedAt ??= null;
+            ticket.CreatedTime = DateTime.UtcNow;
+            ticket.UpdatedTime = DateTime.UtcNow;
+
+            // Handle file attachment
+            if (attachment != null && attachment.Length > 0)
+            {
+                ticket.AttachmentPath = SaveAttachment(attachment);
+            }
+
+            _context.Tickets.Add(ticket);
+            _context.SaveChanges();
+
+            return CreatedAtAction(nameof(GetOne), new { id = ticket.Id }, ticket);
         }
 
-        /*
-         * PUT https://localhost:56201/api/ticket/{id}
-         * Updates ticket with any fields present in JSON body (partial or full update)
-         */
+        // PUT /api/ticket/{id}
         [HttpPut("{id:int}")]
-        public IActionResult Update(int id, [FromBody] JsonElement body)
+        public IActionResult Update(int id, [FromForm] string? jsonData, IFormFile? attachment)
         {
-            try
+            var ticket = _context.Tickets.Find(id);
+            if (ticket is null) return NotFound();
+
+            // Parse JSON data if provided
+            if (!string.IsNullOrEmpty(jsonData))
             {
-                var t = _context.Tickets.Find(id);
-                if (t is null) return NotFound();
+                var body = JsonDocument.Parse(jsonData).RootElement;
 
-                static bool TryGetString(JsonElement el, string[] keys, out string? value)
-                {
-                    foreach (var k in keys)
-                    {
-                        if (el.TryGetProperty(k, out var prop) && prop.ValueKind != JsonValueKind.Null)
-                        {
-                            value = prop.GetString();
-                            return true;
-                        }
-                    }
-                    value = null;
-                    return false;
-                }
-
-                static bool TryGetDate(JsonElement el, string[] keys, out DateTime? value)
-                {
-                    foreach (var k in keys)
-                    {
-                        if (el.TryGetProperty(k, out var prop) && prop.ValueKind == JsonValueKind.String)
-                        {
-                            var s = prop.GetString();
-                            if (!string.IsNullOrEmpty(s) && DateTime.TryParse(s, out var dt))
-                            {
-                                value = dt;
-                                return true;
-                            }
-                            if (string.IsNullOrEmpty(s))
-                            {
-                                value = null;
-                                return true;
-                            }
-                        }
-                        else if (el.TryGetProperty(k, out prop) && prop.ValueKind == JsonValueKind.Null)
-                        {
-                            value = null;
-                            return true;
-                        }
-                    }
-                    value = null;
-                    return false;
-                }
-
-                static bool TryGetInt(JsonElement el, string[] keys, out int? value)
-                {
-                    foreach (var k in keys)
-                    {
-                        if (el.TryGetProperty(k, out var prop))
-                        {
-                            if (prop.ValueKind == JsonValueKind.Number && prop.TryGetInt32(out var i))
-                            {
-                                value = i;
-                                return true;
-                            }
-                            if (prop.ValueKind == JsonValueKind.String)
-                            {
-                                var s = prop.GetString();
-                                if (!string.IsNullOrEmpty(s) && int.TryParse(s, out var pi))
-                                {
-                                    value = pi;
-                                    return true;
-                                }
-                            }
-                            if (prop.ValueKind == JsonValueKind.Null)
-                            {
-                                value = null;
-                                return true;
-                            }
-                        }
-                    }
-                    value = null;
-                    return false;
-                }
-
-                // Update fields if present in body
-                if (TryGetString(body, new[] { "summary", "Summary" }, out var summary)) t.Summary = summary ?? t.Summary;
-                if (TryGetInt(body, new[] { "userId", "UserID", "userID", "UserId" }, out var userId)) t.UserID = userId ?? t.UserID;
-                if (TryGetInt(body, new[] { "agentId", "AgentID", "agentID", "AgentId" }, out var agentId)) t.AgentID = agentId ?? t.AgentID;
-                if (TryGetString(body, new[] { "status", "Status" }, out var status)) t.Status = status ?? t.Status;
-                if (TryGetString(body, new[] { "type", "Type" }, out var type)) t.Type = type ?? t.Type;
-                if (TryGetString(body, new[] { "description", "Description" }, out var desc)) t.Description = desc ?? t.Description;
-                if (TryGetString(body, new[] { "priority", "Priority" }, out var priority)) t.Priority = priority ?? t.Priority;
-                if (TryGetString(body, new[] { "category", "Category" }, out var category)) t.Category = category ?? t.Category;
-
-                if (TryGetDate(body, new[] { "dueDate", "DueDate" }, out var due)) t.DueDate = due ?? t.DueDate;
-                if (TryGetDate(body, new[] { "resolvedAt", "ResolvedAt" }, out var resolved)) t.ResolvedAt = resolved;
-
-                // update timestamp
-                t.UpdatedTime = DateTime.UtcNow;
-
-                _context.SaveChanges();
-                return NoContent();
+                if (TryGetString(body, new[] { "summary" }, out var summary)) ticket.Summary = summary ?? ticket.Summary;
+                if (TryGetInt(body, new[] { "userId", "userID" }, out var userId)) ticket.UserID = userId ?? ticket.UserID;
+                if (TryGetInt(body, new[] { "agentId", "agentID" }, out var agentId)) ticket.AgentID = agentId ?? ticket.AgentID;
+                if (TryGetString(body, new[] { "status" }, out var status)) ticket.Status = status ?? ticket.Status;
+                if (TryGetString(body, new[] { "type" }, out var type)) ticket.Type = type ?? ticket.Type;
+                if (TryGetString(body, new[] { "description" }, out var desc)) ticket.Description = desc ?? ticket.Description;
+                if (TryGetString(body, new[] { "priority" }, out var priority)) ticket.Priority = priority ?? ticket.Priority;
+                if (TryGetString(body, new[] { "category" }, out var category)) ticket.Category = category ?? ticket.Category;
+                if (TryGetDate(body, new[] { "dueDate" }, out var due)) ticket.DueDate = due ?? ticket.DueDate;
+                if (TryGetDate(body, new[] { "resolvedAt" }, out var resolved)) ticket.ResolvedAt = resolved;
             }
-            catch (Exception ex)
+
+            // Handle new attachment
+            if (attachment != null && attachment.Length > 0)
             {
-                _logger.LogError(ex, "Error updating ticket {Id} with payload {Body}", id, body.ToString());
-                return StatusCode(500, ex.Message);
+                // Delete old attachment if exists
+                if (!string.IsNullOrEmpty(ticket.AttachmentPath))
+                {
+                    DeleteAttachment(ticket.AttachmentPath);
+                }
+                ticket.AttachmentPath = SaveAttachment(attachment);
             }
+
+            ticket.UpdatedTime = DateTime.UtcNow;
+            _context.SaveChanges();
+            
+            return NoContent();
         }
 
-        /*
-         * PATCH https://localhost:56201/api/ticket/{id}
-         * Partial update - only updates the fields you send
-         */
-        [HttpPatch("{id:int}")]
-        public IActionResult Patch(int id, [FromBody] JsonElement body)
-        {
-            try
-            {
-                var t = _context.Tickets.Find(id);
-                if (t is null) return NotFound();
-
-                if (body.TryGetProperty("summary", out var s) && s.ValueKind != JsonValueKind.Null) t.Summary = s.GetString();
-                if (body.TryGetProperty("description", out var d) && d.ValueKind != JsonValueKind.Null) t.Description = d.GetString();
-                if (body.TryGetProperty("priority", out var p) && p.ValueKind != JsonValueKind.Null) t.Priority = p.GetString();
-                if (body.TryGetProperty("category", out var c) && c.ValueKind != JsonValueKind.Null) t.Category = c.GetString();
-
-                if (body.TryGetProperty("userId", out var uid))
-                {
-                    if (uid.ValueKind == JsonValueKind.Number && uid.TryGetInt32(out var i)) t.UserID = i;
-                    else if (uid.ValueKind == JsonValueKind.String && int.TryParse(uid.GetString(), out var pi)) t.UserID = pi;
-                }
-
-                if (body.TryGetProperty("agentId", out var aid))
-                {
-                    if (aid.ValueKind == JsonValueKind.Number && aid.TryGetInt32(out var i)) t.AgentID = i;
-                    else if (aid.ValueKind == JsonValueKind.String && int.TryParse(aid.GetString(), out var pi)) t.AgentID = pi;
-                }
-
-                if (body.TryGetProperty("dueDate", out var dd))
-                {
-                    if (dd.ValueKind == JsonValueKind.String && DateTime.TryParse(dd.GetString(), out var dt)) t.DueDate = dt;
-                    else if (dd.ValueKind == JsonValueKind.Null) t.DueDate = default;
-                }
-                if (body.TryGetProperty("resolvedAt", out var ra))
-                {
-                    if (ra.ValueKind == JsonValueKind.String && DateTime.TryParse(ra.GetString(), out var rt)) t.ResolvedAt = rt;
-                    else if (ra.ValueKind == JsonValueKind.Null) t.ResolvedAt = null;
-                }
-
-                // update timestamp
-                t.UpdatedTime = DateTime.UtcNow;
-
-                _context.SaveChanges();
-                return NoContent();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error patching ticket {Id} with payload {Body}", id, body.ToString());
-                return StatusCode(500, ex.Message);
-            }
-        }
-
-        /*
-         * DELETE https://localhost:56201/api/ticket/{id}
-         * Deletes a ticket
-         */
+        // DELETE /api/ticket/{id}
         [HttpDelete("{id:int}")]
         public IActionResult Delete(int id)
         {
+            var ticket = _context.Tickets.Find(id);
+            if (ticket is null) return NotFound();
+
+            // Delete attachment if exists
+            if (!string.IsNullOrEmpty(ticket.AttachmentPath))
+            {
+                DeleteAttachment(ticket.AttachmentPath);
+            }
+
+            _context.Tickets.Remove(ticket);
+            _context.SaveChanges();
+            
+            return NoContent();
+        }
+
+        // DELETE /api/ticket/{id}/attachment
+        [HttpDelete("{id:int}/attachment")]
+        public IActionResult DeleteAttachmentOnly(int id)
+        {
+            var ticket = _context.Tickets.Find(id);
+            if (ticket is null) return NotFound();
+
+            if (!string.IsNullOrEmpty(ticket.AttachmentPath))
+            {
+                DeleteAttachment(ticket.AttachmentPath);
+                ticket.AttachmentPath = null;
+                ticket.UpdatedTime = DateTime.UtcNow;
+                _context.SaveChanges();
+            }
+
+            return NoContent();
+        }
+
+        private string SaveAttachment(IFormFile file)
+        {
+            // Validate file type
+            var allowedExtensions = new[] { ".pdf", ".doc", ".docx", ".txt", ".jpg", ".jpeg", ".png", ".zip" };
+            var extension = Path.GetExtension(file.FileName).ToLowerInvariant();
+            
+            if (!allowedExtensions.Contains(extension))
+                throw new InvalidOperationException($"Invalid file type. Allowed: {string.Join(", ", allowedExtensions)}");
+
+            // Validate file size (10MB limit)
+            if (file.Length > 10 * 1024 * 1024)
+                throw new InvalidOperationException("File size must not exceed 10MB");
+
+            // Generate unique filename
+            var uniqueFileName = $"{Guid.NewGuid()}{extension}";
+            var uploadsFolder = Path.Combine(_environment.WebRootPath ?? _environment.ContentRootPath, ATTACHMENT_FOLDER);
+            var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+            // Save file
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                file.CopyTo(fileStream);
+            }
+
+            return $"/{ATTACHMENT_FOLDER}/{uniqueFileName}";
+        }
+
+        private void DeleteAttachment(string attachmentPath)
+        {
             try
             {
-                var t = _context.Tickets.Find(id);
-                if (t is null) return NotFound();
-                _context.Tickets.Remove(t);
-                _context.SaveChanges();
-                return NoContent();
+                var fullPath = Path.Combine(_environment.WebRootPath ?? _environment.ContentRootPath, attachmentPath.TrimStart('/'));
+                if (System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                }
             }
-            catch (Exception ex)
+            catch
             {
-                _logger.LogError(ex, "Error deleting ticket {Id}", id);
-                return StatusCode(500, ex.Message);
+                // Ignore deletion errors
             }
+        }
+
+        private static bool TryGetString(JsonElement el, string[] keys, out string? value)
+        {
+            foreach (var k in keys)
+            {
+                if (el.TryGetProperty(k, out var prop) && prop.ValueKind != JsonValueKind.Null)
+                {
+                    value = prop.GetString();
+                    return true;
+                }
+            }
+            value = null;
+            return false;
+        }
+
+        private static bool TryGetDate(JsonElement el, string[] keys, out DateTime? value)
+        {
+            foreach (var k in keys)
+            {
+                if (el.TryGetProperty(k, out var prop))
+                {
+                    if (prop.ValueKind == JsonValueKind.String && DateTime.TryParse(prop.GetString(), out var dt))
+                    {
+                        value = dt;
+                        return true;
+                    }
+                    if (prop.ValueKind == JsonValueKind.Null)
+                    {
+                        value = null;
+                        return true;
+                    }
+                }
+            }
+            value = null;
+            return false;
+        }
+
+        private static bool TryGetInt(JsonElement el, string[] keys, out int? value)
+        {
+            foreach (var k in keys)
+            {
+                if (el.TryGetProperty(k, out var prop))
+                {
+                    if (prop.ValueKind == JsonValueKind.Number && prop.TryGetInt32(out var i))
+                    {
+                        value = i;
+                        return true;
+                    }
+                    if (prop.ValueKind == JsonValueKind.String && int.TryParse(prop.GetString(), out var pi))
+                    {
+                        value = pi;
+                        return true;
+                    }
+                }
+            }
+            value = null;
+            return false;
         }
     }
 }
