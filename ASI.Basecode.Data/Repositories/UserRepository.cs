@@ -31,5 +31,12 @@ namespace ASI.Basecode.Data.Repositories
             UnitOfWork.SaveChanges();
         }
 
+        // In your repository implementation (e.g., UserRepository)
+        public void UpdateUser(User user)
+        {
+            var dbSet = this.GetDbSet<User>();
+            dbSet.Update(user);
+            UnitOfWork.SaveChanges();
+        }
     }
 }
