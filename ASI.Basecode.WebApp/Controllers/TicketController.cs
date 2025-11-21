@@ -22,9 +22,10 @@ namespace ASI.Basecode.WebApp.Controllers
         private readonly IWebHostEnvironment _environment;
         private const string ATTACHMENT_FOLDER = "TicketAttachments";
 
-        public TicketController(AsiBasecodeDBContext ctx, IWebHostEnvironment environment) 
+        public TicketController(AsiBasecodeDBContext ctx, ITicketService ticketService, IWebHostEnvironment environment) 
         { 
-            _context = ctx; 
+            _context = ctx;
+            _ticketService = ticketService;
             _environment = environment;
             EnsureAttachmentFolderExists();
         }

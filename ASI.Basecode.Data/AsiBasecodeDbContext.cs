@@ -95,8 +95,6 @@ namespace ASI.Basecode.Data
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.TicketId).IsRequired();
-                entity.Property(e => e.UserID).IsRequired();
-                entity.Property(e => e.AgentID).IsRequired();
                 entity.Property(e => e.Rating).IsRequired();
                 entity.Property(e => e.Comment).HasMaxLength(500);
                 entity.Property(e => e.FeedbackDate).HasColumnType("datetime");

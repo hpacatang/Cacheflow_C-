@@ -14,12 +14,6 @@ namespace ASI.Basecode.Services.ServiceModels
         [Required(ErrorMessage = "TicketId is required.")]
         public int TicketId { get; set; }
 
-        [Required(ErrorMessage = "UserID is required.")]
-        public int UserID { get; set; }
-
-        [Required(ErrorMessage = "AgentID is required.")]
-        public int AgentID { get; set; }
-
         [Required(ErrorMessage = "Rating is required.")]
         [Range(1, 5, ErrorMessage = "Rating must be between 1 and 5.")]
         public int Rating { get; set; }

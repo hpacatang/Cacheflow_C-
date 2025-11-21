@@ -26,8 +26,7 @@ namespace ASI.Basecode.Services.Services
                 .Select(f => new FeedbackViewModel
                 {
                     Id = f.Id,
-                    UserID = f.UserID,
-                    AgentID = f.AgentID,
+                    TicketId = f.TicketId,
                     Rating = f.Rating,
                     Comment = f.Comment,
                     FeedbackDate = f.FeedbackDate,
@@ -43,8 +42,7 @@ namespace ASI.Basecode.Services.Services
             return new FeedbackViewModel
             {
                 Id = feedback.Id,
-                UserID = feedback.UserID,
-                AgentID = feedback.AgentID,
+                TicketId = feedback.TicketId,
                 Rating = feedback.Rating,
                 Comment = feedback.Comment,
                 FeedbackDate = feedback.FeedbackDate,
@@ -61,8 +59,6 @@ namespace ASI.Basecode.Services.Services
             {
                 Id = nextId,
                 TicketId = model.TicketId,
-                UserID = model.UserID,
-                AgentID = model.AgentID,
                 Rating = model.Rating,
                 Comment = model.Comment,
                 FeedbackDate = model.FeedbackDate ?? System.DateTime.Now,

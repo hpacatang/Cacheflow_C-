@@ -45,8 +45,6 @@ namespace ASI.Basecode.Services.Services
                 {
                     Id = f.Id,
                     TicketId = f.TicketId,
-                    UserID = f.UserID,
-                    AgentID = f.AgentID,
                     Rating = f.Rating,
                     Comment = f.Comment,
                     FeedbackDate = f.FeedbackDate,

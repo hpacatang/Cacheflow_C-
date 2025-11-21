@@ -10,8 +10,6 @@ namespace ASI.Basecode.Data.Models
     {
         public int Id { get; set; }
         public int TicketId { get; set; }
-        public int UserID { get; set; }
-        public int AgentID { get; set; }
         public int Rating { get; set; }
         public string Comment { get; set; }
         public DateTime? FeedbackDate { get; set; } = DateTime.Now;
