@@ -74,7 +74,7 @@ namespace ASI.Basecode.WebApp.Controllers
         [HttpGet("{id:int}/with-feedback")]
         public IActionResult GetTicketWithFeedback(int id)
         {
-            var ticketWithFeedback = _ticketService.GetTicketWithFeedback(id);
+            var ticketWithFeedback = _tickets.GetTicketWithFeedback(id);
             if (ticketWithFeedback == null)
                 return NotFound();
             return Ok(ticketWithFeedback);
@@ -86,31 +86,8 @@ namespace ASI.Basecode.WebApp.Controllers
         [HttpGet("with-feedback/all")]
         public IActionResult GetAllTicketsWithFeedback()
         {
-            try
-            {
-                var ticketsWithFeedback = _context.Tickets
-                    .Where(t => t.Feedback.Any())
-                    .Select(t => new
-                    {
-                        t.Id,
-                        t.Summary,
-                        t.UserID,
-                        t.AgentID,
-                        t.Status,
-                        t.ResolvedAt,
-                        t.DueDate,
-                        t.Priority,
-                        t.Category,
-                        FeedbackCount = t.Feedback.Count()
-                    })
-                    .ToList();
-        
-                return Ok(ticketsWithFeedback);
-            }
-            catch (System.Exception ex)
-            {
-                return StatusCode(500, $"Database error: {ex.Message}");
-            }
+            var ticketsWithFeedback = _tickets.GetAllWithFeedback();
+            return Ok(ticketsWithFeedback);
         }
     }
 }

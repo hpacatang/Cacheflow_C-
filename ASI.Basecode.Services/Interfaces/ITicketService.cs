@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using ASI.Basecode.Data.Models;
+using ASI.Basecode.Services.ServiceModels;
 
 namespace ASI.Basecode.Services.Interfaces
 {
@@ -12,5 +13,7 @@ namespace ASI.Basecode.Services.Interfaces
         bool Update(int id, string? jsonData, IFormFile? attachment);
         bool Delete(int id);
         bool DeleteAttachment(int id);
+        TicketWithFeedbackViewModel GetTicketWithFeedback(int id);
+        IEnumerable<object> GetAllWithFeedback();
     }
 }

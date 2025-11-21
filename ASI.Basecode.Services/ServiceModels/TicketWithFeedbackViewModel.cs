@@ -49,7 +49,6 @@ namespace ASI.Basecode.Services.ServiceModels
 
         [StringLength(50, ErrorMessage = "CreatedBy cannot exceed 50 characters.")]
         public string? CreatedBy { get; set; }
-
         public DateTime? UpdatedTime { get; set; }
 
         [StringLength(50, ErrorMessage = "UpdatedBy cannot exceed 50 characters.")]

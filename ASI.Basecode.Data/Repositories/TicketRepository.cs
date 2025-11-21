@@ -24,5 +24,12 @@ namespace ASI.Basecode.Data.Repositories
                .Include(t => t.Feedback)
             .FirstOrDefault(t => t.Id == id);
         }
+
+        public IEnumerable<Ticket> GetAllTicketsWithFeedback()
+        {
+            return _context.Tickets
+                .Include(t => t.Feedback)
+            .ToList();
+        }
     }
 }

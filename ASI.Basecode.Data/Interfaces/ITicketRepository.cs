@@ -10,5 +10,6 @@ namespace ASI.Basecode.Data.Interfaces
     public interface ITicketRepository
     {
         Ticket? GetTicketWithFeedback(int id);
+        IEnumerable<Ticket> GetAllTicketsWithFeedback();
     }
 }

@@ -1,14 +1,16 @@
+using ASI.Basecode.Data;
+using ASI.Basecode.Data.Interfaces;
+using ASI.Basecode.Data.Models;
+using ASI.Basecode.Data.Repositories;
+using ASI.Basecode.Services.Interfaces;
+using ASI.Basecode.Services.ServiceModels;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-using ASI.Basecode.Data;
-using ASI.Basecode.Data.Models;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using ASI.Basecode.Services.Interfaces;
-using ASI.Basecode.Services.ServiceModels;
 
 namespace ASI.Basecode.Services.Services
 {
@@ -17,11 +19,13 @@ namespace ASI.Basecode.Services.Services
         private readonly AsiBasecodeDBContext _context;
         private readonly IWebHostEnvironment _environment;
         private const string ATTACHMENT_FOLDER = "TicketAttachments";
+        private readonly ITicketRepository _ticketRepository;
 
-        public TicketService(AsiBasecodeDBContext context, IWebHostEnvironment environment)
+        public TicketService(ITicketRepository ticketRepository, AsiBasecodeDBContext context, IWebHostEnvironment environment)
         {
             _context = context;
             _environment = environment;
+            _ticketRepository = ticketRepository;
             EnsureAttachmentFolderExists();
         }
 
@@ -197,5 +201,74 @@ namespace ASI.Basecode.Services.Services
             value = null;
             return false;
         }
-    }
+
+        public TicketWithFeedbackViewModel GetTicketWithFeedback(int id)
+        {
+            var ticket = _ticketRepository.GetTicketWithFeedback(id);
+
+          if (ticket == null)
+            return null;
+
+            return new TicketWithFeedbackViewModel
+            {
+                Id = ticket.Id,
+                Summary = ticket.Summary,
+                UserID = ticket.UserID,
+                AgentID = ticket.AgentID,
+                Status = ticket.Status,
+                Type = ticket.Type,
+                Description = ticket.Description,
+                DueDate = ticket.DueDate,
+                ResolvedAt = ticket.ResolvedAt,
+                Priority = ticket.Priority,
+                Category = ticket.Category,
+                CreatedTime = ticket.CreatedTime,
+                CreatedBy = ticket.CreatedBy,
+                UpdatedTime = ticket.UpdatedTime,
+                UpdatedBy = ticket.UpdatedBy,
+                Feedback = ticket.Feedback.Select(f => new FeedbackViewModel
+                {
+                    Id = f.Id,
+                    TicketId = f.TicketId,
+                    Rating = f.Rating,
+                    Comment = f.Comment,
+                    FeedbackDate = f.FeedbackDate,
+                    Status = f.Status
+                }).ToList()
+            };
+        }
+
+        public IEnumerable<object> GetAllWithFeedback()
+        {
+            var tickets = _ticketRepository.GetAllTicketsWithFeedback();
+
+            return tickets.Select(ticket => new TicketWithFeedbackViewModel
+            {
+                Id = ticket.Id,
+                Summary = ticket.Summary,
+                UserID = ticket.UserID,
+                AgentID = ticket.AgentID,
+                Status = ticket.Status,
+                Type = ticket.Type,
+                Description = ticket.Description,
+                DueDate = ticket.DueDate,
+                ResolvedAt = ticket.ResolvedAt,
+                Priority = ticket.Priority,
+                Category = ticket.Category,
+                CreatedTime = ticket.CreatedTime,
+                CreatedBy = ticket.CreatedBy,
+                UpdatedTime = ticket.UpdatedTime,
+                UpdatedBy = ticket.UpdatedBy,
+                Feedback = ticket.Feedback.Select(f => new FeedbackViewModel
+                {
+                    Id = f.Id,
+                    TicketId = f.TicketId,
+                    Rating = f.Rating,
+                    Comment = f.Comment,
+                    FeedbackDate = f.FeedbackDate,
+                    Status = f.Status
+                }).ToList()
+            }).ToList();
+        }
+    }   
 }
