@@ -93,6 +93,7 @@ namespace ASI.Basecode.Data
 
             modelBuilder.Entity<Feedback>(entity =>
             {
+                 entity.ToTable("Feedback");
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.TicketId).IsRequired();
                 entity.Property(e => e.Rating).IsRequired();
