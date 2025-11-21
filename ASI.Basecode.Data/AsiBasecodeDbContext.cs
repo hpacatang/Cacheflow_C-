@@ -17,7 +17,9 @@ namespace ASI.Basecode.Data
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Article> Articles { get; set; }
         public virtual DbSet<Ticket> Tickets { get; set; }
-        
+
+        public virtual DbSet<Feedback> Feedbacks { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>(entity =>
@@ -87,6 +89,24 @@ namespace ASI.Basecode.Data
                 entity.Property(e => e.UpdatedBy)
                       .HasMaxLength(50)
                       .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Feedback>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.TicketId).IsRequired();
+                entity.Property(e => e.UserID).IsRequired();
+                entity.Property(e => e.AgentID).IsRequired();
+                entity.Property(e => e.Rating).IsRequired();
+                entity.Property(e => e.Comment).HasMaxLength(500);
+                entity.Property(e => e.FeedbackDate).HasColumnType("datetime");
+                entity.Property(e => e.Status).HasMaxLength(50).IsRequired();
+
+                // Add foreign key relationship
+                entity.HasOne(e => e.Ticket)
+                    .WithMany(t => t.Feedback)
+                    .HasForeignKey(e => e.TicketId)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             OnModelCreatingPartial(modelBuilder);

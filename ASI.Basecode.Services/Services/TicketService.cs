@@ -8,6 +8,7 @@ using ASI.Basecode.Data.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using ASI.Basecode.Services.Interfaces;
+using ASI.Basecode.Services.ServiceModels;
 
 namespace ASI.Basecode.Services.Services
 {
@@ -135,7 +136,7 @@ namespace ASI.Basecode.Services.Services
                 var fullPath = Path.Combine(_environment.WebRootPath ?? _environment.ContentRootPath, attachmentPath.TrimStart('/'));
                 if (File.Exists(fullPath))
                     File.Delete(fullPath);
-            }
+        }
             catch { }
         }
 
@@ -182,12 +183,12 @@ namespace ASI.Basecode.Services.Services
                 if (el.TryGetProperty(k, out var prop))
                 {
                     if (prop.ValueKind == JsonValueKind.Number && prop.TryGetInt32(out var i))
-                    {
+            {
                         value = i;
                         return true;
                     }
                     if (prop.ValueKind == JsonValueKind.String && int.TryParse(prop.GetString(), out var pi))
-                    {
+                {
                         value = pi;
                         return true;
                     }
