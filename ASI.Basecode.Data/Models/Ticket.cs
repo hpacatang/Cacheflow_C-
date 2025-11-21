@@ -9,6 +9,8 @@ namespace ASI.Basecode.Data.Models
         public string Summary { get; set; } = null!;
         public string Name { get; set; } = null!;
         public string Assignee { get; set; } = null!;
+        public int UserID { get; set; }
+        public int AgentID { get; set; }
         public string Status { get; set; } = null!;
         public DateTime? ResolvedAt { get; set; }
         public string Type { get; set; } = null!;
