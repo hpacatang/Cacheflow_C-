@@ -3,10 +3,12 @@ using System;
 using ASI.Basecode.Data;
 using ASI.Basecode.Data.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ASI.Basecode.WebApp.Controllers
 {
-    [Route("api/[controller]")]
+    [AllowAnonymous]
+    [Route("api/articles")]
     [ApiController]
     public class ArticleController : ControllerBase
     {
@@ -68,6 +70,7 @@ namespace ASI.Basecode.WebApp.Controllers
 
             existingArticle.Title = article.Title;
             existingArticle.Body = article.Body;
+            existingArticle.Views = article.Views;
             existingArticle.Category = article.Category;
             existingArticle.LastUpdated = DateTime.UtcNow;
 
