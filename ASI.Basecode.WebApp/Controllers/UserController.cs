@@ -65,6 +65,35 @@ namespace ASI.Basecode.WebApp.Controllers
             return Conflict(new { success = false, message = "Registration failed or user exists" });
         }
 
+        // PUT /api/users/{name}
+        [HttpPut("{name}")]
+        [AllowAnonymous]
+        public IActionResult Update(string name, [FromBody] FrontendUserDto model)
+        {
+            if (model == null) return BadRequest();
+
+            var user = _userService.GetAllUsers().FirstOrDefault(u => u.Name == name);
+            if (user == null) return NotFound(new { message = "User not found" });
+
+            // Update fields
+            user.Name = model.name ?? user.Name;
+            user.Email = model.email ?? user.Email;
+            user.Role = model.role ?? user.Role;
+            user.Status = model.status ?? user.Status;
+            if (!string.IsNullOrWhiteSpace(model.password))
+            {
+                user.Password = model.password;
+            }
+
+            var result = _userService.UpdateUser(user);
+            if (result)
+            {
+                return Ok(new { success = true, message = "User updated" });
+            }
+
+            return BadRequest(new { success = false, message = "Update failed" });
+        }
+
         // DTO matching the React app payload shape
         public class FrontendUserDto
         {

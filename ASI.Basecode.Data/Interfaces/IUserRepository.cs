@@ -1,4 +1,5 @@
 ﻿using ASI.Basecode.Data.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace ASI.Basecode.Data.Interfaces
@@ -8,5 +9,8 @@ namespace ASI.Basecode.Data.Interfaces
         IQueryable<User> GetUsers();
         User GetUserByEmail(string email);
         void AddUser(User user);
+
+        // In IUserRepository interface
+        void UpdateUser(User user);
     }
 }

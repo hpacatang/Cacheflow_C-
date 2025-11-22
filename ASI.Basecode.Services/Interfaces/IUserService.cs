@@ -10,5 +10,6 @@ namespace ASI.Basecode.Services.Interfaces
         LoginResult AuthenticateUser(string identifier, string password, ref User user);
         LoginResult RegisterUser(User user);
         IEnumerable<User> GetAllUsers();
+        bool UpdateUser(User user);
     }
 }

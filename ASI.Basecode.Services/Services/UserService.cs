@@ -58,5 +58,23 @@ namespace ASI.Basecode.Services.Services
         {
             return _repository.GetUsers().ToList();
         }
+
+        public bool UpdateUser(User user)
+        {
+            if (user == null || user.Id == 0)
+                return false;
+
+            // Encrypt password if it was changed (check if it's not already encrypted)
+            if (!string.IsNullOrWhiteSpace(user.Password) && user.Password.Length < 50) // Assuming encrypted passwords are longer
+            {
+                user.Password = PasswordManager.EncryptPassword(user.Password);
+            }
+
+            user.UpdatedTime = System.DateTime.UtcNow;
+            user.UpdatedBy = user.Name;
+
+            _repository.UpdateUser(user);
+            return true;
+        }
     }
 }
