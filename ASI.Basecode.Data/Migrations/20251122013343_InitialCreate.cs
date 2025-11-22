@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ASI.Basecode.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -41,7 +41,7 @@ namespace ASI.Basecode.Data.Migrations
                     ResolvedAt = table.Column<DateTime>(type: "datetime", nullable: true),
                     Type = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DueDate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DueDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     Priority = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Category = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "datetime", nullable: true),
@@ -75,6 +75,34 @@ namespace ASI.Basecode.Data.Migrations
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Feedback",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TicketId = table.Column<int>(type: "int", nullable: false),
+                    Rating = table.Column<int>(type: "int", nullable: false),
+                    Comment = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    FeedbackDate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Feedback", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Feedback_Tickets_TicketId",
+                        column: x => x.TicketId,
+                        principalTable: "Tickets",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Feedback_TicketId",
+                table: "Feedback",
+                column: "TicketId");
         }
 
         /// <inheritdoc />
@@ -84,10 +112,13 @@ namespace ASI.Basecode.Data.Migrations
                 name: "Articles");
 
             migrationBuilder.DropTable(
-                name: "Tickets");
+                name: "Feedback");
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Tickets");
         }
     }
 }

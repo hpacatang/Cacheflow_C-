@@ -55,6 +55,39 @@ namespace ASI.Basecode.Data.Migrations
                     b.ToTable("Articles");
                 });
 
+            modelBuilder.Entity("ASI.Basecode.Data.Models.Feedback", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Comment")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime?>("FeedbackDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("TicketId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TicketId");
+
+                    b.ToTable("Feedback", (string)null);
+                });
+
             modelBuilder.Entity("ASI.Basecode.Data.Models.Ticket", b =>
                 {
                     b.Property<int>("Id")
@@ -86,7 +119,7 @@ namespace ASI.Basecode.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("DueDate")
+                    b.Property<DateTime>("DueDate")
                         .HasColumnType("datetime");
 
                     b.Property<string>("Priority")
@@ -178,6 +211,22 @@ namespace ASI.Basecode.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("ASI.Basecode.Data.Models.Feedback", b =>
+                {
+                    b.HasOne("ASI.Basecode.Data.Models.Ticket", "Ticket")
+                        .WithMany("Feedback")
+                        .HasForeignKey("TicketId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ticket");
+                });
+
+            modelBuilder.Entity("ASI.Basecode.Data.Models.Ticket", b =>
+                {
+                    b.Navigation("Feedback");
                 });
 #pragma warning restore 612, 618
         }

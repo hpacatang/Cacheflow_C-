@@ -57,7 +57,6 @@ namespace ASI.Basecode.Services.Services
 
             var feedback = new Feedback
             {
-                Id = nextId,
                 TicketId = model.TicketId,
                 Rating = model.Rating,
                 Comment = model.Comment,
